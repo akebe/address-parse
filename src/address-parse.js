@@ -60,7 +60,7 @@ function parse(address) {
     phone: ''
   };
 
-  address = address.replace(/\r\n/g, ' ').replace(/\n/g,' ');
+  address = address.replace(/\r\n/g, ' ').replace(/\n/g, ' ').replace(/\t/g, ' ');
 
   const search = ['地址', '收货地址', '收货人', '收件人', '收货', '邮编', '电话', '：', ':', '；', ';', '，', ',', '。',];
   search.forEach(str => {
@@ -96,23 +96,43 @@ function parse(address) {
 
   address = address.replace(/ {2,}/, ' ');
 
-  const list = address.split(' ').filter(str => str);
-
-  if (list.length > 1) {
-    list.forEach(str => {
-      if (!parse.name || str && str.length < parse.name.length) {
-        parse.name = str
-      }
-    });
-
-    address = address.replace(parse.name, '')
-  }
-
+  // console.log(address)
   let detail = detail_parse_forward(address.trim());
 
   if (!detail.city) {
-    console.log('smart_parse');
     detail = detail_parse(address.trim());
+    if (detail.area && !detail.city) {
+      detail = detail_parse(address.trim(), {
+        ignoreArea: true
+      });
+      console.log('smart_parse->ignoreArea');
+    }else{
+      console.log('smart_parse');
+    }
+    //这个待完善
+    const list = address.replace(detail.province, '').replace(detail.city, '').replace(detail.area, '').split(' ').filter(str => str);
+    if (list.length > 1) {
+      list.forEach(str => {
+        if (!parse.name || str && str.length < parse.name.length) {
+          parse.name = str.trim()
+        }
+      });
+      if (parse.name) {
+        detail.addr = detail.addr.replace(parse.name, '').trim()
+      }
+    }
+  } else {
+    if (detail.name) {
+      parse.name = detail.name
+    } else {
+      const list = detail.addr.split(' ').filter(str => str);
+      if (list.length > 1) {
+        parse.name = list[list.length - 1]
+      }
+      if (parse.name) {
+        detail.addr = detail.addr.replace(parse.name, '').trim()
+      }
+    }
   }
 
   parse.province = detail.province;
@@ -137,6 +157,7 @@ function detail_parse_forward(address) {
     city: '',
     area: '',
     addr: '',
+    name: '',
   };
 
   const provinceKey = ['特别行政区', '古自治区', '维吾尔自治区', '壮族自治区', '回族自治区', '自治区', '省省直辖', '省', '市'];
@@ -146,6 +167,10 @@ function detail_parse_forward(address) {
     const province = defaultData[i];
     let index = address.indexOf(province.name);
     if (index > -1) {
+      if (index > 0) {
+        //省份不是在第一位，在省份之前的字段识别为名称
+        parse.name = address.substr(0, index).trim();
+      }
       parse.province = province.name;
       address = address.substr(index + province.name.length);
       for (let k in provinceKey) {
@@ -189,13 +214,15 @@ function detail_parse_forward(address) {
  * 逆向解析 从后【县，区，旗】往前解析
  * 有地区就能大概返回地址了
  * @param address
- * @returns {{province: string, city: string, area: string, _area: string, addr: string}}
+ * @param ignoreArea 是否忽视区 因为地址中含有区容易导致匹配错误 例：山东省蓬莱市黄海花园东区西门宝威学堂 曲荣声收15753572456
+ * @returns {{province: string, city: string, area: string, name: string, _area: string, addr: string}}
  */
-function detail_parse(address) {
+function detail_parse(address, {ignoreArea = false} = {}) {
   const parse = {
     province: '',
     city: '',
     area: '',
+    name: '',
     _area: '',
     addr: '',
   };
@@ -203,7 +230,8 @@ function detail_parse(address) {
     cityIndex = -1;
 
   address = address.replace('  ', ' ');
-  if (address.indexOf('县') > -1 || address.indexOf('区') > -1 || address.indexOf('旗') > -1) {
+
+  if (!ignoreArea && address.indexOf('县') > -1 || !ignoreArea && address.indexOf('区') > -1 || !ignoreArea && address.indexOf('旗') > -1) {
     if (address.indexOf('旗') > -1) {
       areaIndex = address.indexOf('旗');
       parse.area = address.substr(areaIndex - 1, 2);
@@ -230,7 +258,7 @@ function detail_parse(address) {
 
   } else {
     if (address.indexOf('市') > -1) {
-      areaIndex = address.lastIndexOf('市');
+      areaIndex = address.indexOf('市');
       parse.area = address.substr(areaIndex - 2, 3);
       parse.addr = address.substr(areaIndex + 1);
     } else {

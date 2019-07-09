@@ -110,7 +110,7 @@ function parse(address) {
       console.log('smart_parse');
     }
     //这个待完善
-    const list = address.replace(detail.province, '').replace(detail.city, '').replace(detail.area, '').split(' ').filter(str => str);
+    const list = address.replace(detail.provinceOrigin, '').replace(detail.cityOrigin, '').replace(detail.area, '').split(' ').filter(str => str);
     if (list.length > 1) {
       list.forEach(str => {
         if (!parse.name || str && str.length < parse.name.length) {
@@ -171,11 +171,13 @@ function detail_parse_forward(address) {
         //省份不是在第一位，在省份之前的字段识别为名称
         parse.name = address.substr(0, index).trim();
       }
-      parse.province = province.name;
+      parse.province = province.name
+      parse.provinceOrigin = province.name
       address = address.substr(index + province.name.length);
       for (let k in provinceKey) {
         if (address.indexOf(provinceKey[k]) === 0) {
           address = address.substr(provinceKey[k].length);
+          parse.origin += provinceKey[k]
         }
       }
       for (let j in province.city) {
@@ -183,10 +185,12 @@ function detail_parse_forward(address) {
         index = address.indexOf(city.name);
         if (index > -1 && index < 3) {
           parse.city = city.name;
+          parse.cityOrigin = city.name
           address = address.substr(index + parse.city.length);
           for (let k in cityKey) {
             if (address.indexOf(cityKey[k]) === 0) {
               address = address.substr(cityKey[k].length);
+              parse.cityOrigin += cityKey[k]
             }
           }
           if (city.area) {

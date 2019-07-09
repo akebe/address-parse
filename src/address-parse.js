@@ -177,7 +177,7 @@ function detail_parse_forward(address) {
       for (let k in provinceKey) {
         if (address.indexOf(provinceKey[k]) === 0) {
           address = address.substr(provinceKey[k].length);
-          parse.origin += provinceKey[k]
+          parse.provinceOrigin += provinceKey[k]
         }
       }
       for (let j in province.city) {

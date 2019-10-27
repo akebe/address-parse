@@ -20,6 +20,7 @@
     "address-parse"
   ],
   "dependencies": {
+    "address-parse": "^1.0.2"
   },
   "scripts": {
     "build": "babel src -d dist --presets es2015,stage-2",

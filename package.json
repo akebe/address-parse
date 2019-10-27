@@ -1,7 +1,7 @@
 {
   "name": "address-parse",
   "author": "akebe <asseek@163.com>",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "cn address parse",
   "main": "dist/parse/index.js",
   "devDependencies": {

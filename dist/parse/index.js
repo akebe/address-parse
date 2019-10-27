@@ -140,6 +140,7 @@ var ParseAddress = function () {
         this.result.mobile = mobile[0];
         this.address = this.address.replace(mobile[0], ' ');
       }
+      ParseAddress.Reg.mobile.lastIndex = 0;
     }
 
     /**
@@ -154,6 +155,7 @@ var ParseAddress = function () {
         this.result.phone = phone[0];
         this.address = this.address.replace(phone[0], ' ');
       }
+      ParseAddress.Reg.phone.lastIndex = 0;
     }
 
     /**
@@ -168,6 +170,7 @@ var ParseAddress = function () {
         this.result.zip_code = zip[0];
         this.address = this.address.replace(zip[0], '');
       }
+      ParseAddress.Reg.zipCode.lastIndex = 0;
     }
 
     /**

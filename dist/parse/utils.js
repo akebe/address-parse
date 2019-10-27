@@ -10,6 +10,11 @@ var _area3 = _interopRequireDefault(_area2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * 通过地区编码返回省市区对象
+ * @param code
+ * @returns {{code: *, province: (*|string), city: (*|string), area: (*|string)}}
+ */
 function getAreaByCode(code) {
   var pCode = code.slice(0, 2) + '0000',
       cCode = code.slice(0, 4) + '00';

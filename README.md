@@ -2,7 +2,7 @@
 
 ### 项目介绍
 收货地址智能解析  
-如有识别不准的地址请提ISSUSE
+如有识别不准的地址请 [ISSUES](https://github.com/akebe/address-parse/issues)
 
 ### Install
 `npm install address-parse --save`
@@ -12,7 +12,7 @@
 import AddressParse from 'address-parse';
 
 const [result] = AddressParse.parse('福建省福州市福清市石竹街道义明综合楼3F，15000000000，asseek');
-console.log(result, results);
+console.log(result);
 /* 
 {
   'province': '福建省',

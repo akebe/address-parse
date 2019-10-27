@@ -1,8 +1,7 @@
-# address-parse
+# CN Address Parse
 
-### 项目介绍
-收货地址智能解析  
-如有识别不准的地址请 [ISSUES](https://github.com/akebe/address-parse/issues)
+国内地址地区智能解析，无需完整地址也能正确匹配  
+如有识别不准的地址请 [issuse](https://github.com/akebe/address-parse/issues)
 
 ### Install
 `npm install address-parse --save`

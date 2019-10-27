@@ -22,9 +22,9 @@ console.log(result, results);
   'name': 'asseek',
   'code': '350181',
   '__type': 'parseByProvince',     //结果解析使用函数 parseByProvince parseByCity parseByArea
-  'mobile': '',
+  'mobile': '15000000000',
   'zip_code': '',
-  'phone': '15000000000',
+  'phone': '',
 };
 */
 ````
@@ -64,4 +64,4 @@ const result = Utils.getAreaByAddress({province: '福建', city: '福州', area:
 // {"code":"350181","province":"福建省","city":"福州市","area":"福清市"}
 ````
 ### LICENSE
-MIT
+[MIT](https://en.wikipedia.org/wiki/MIT_License)

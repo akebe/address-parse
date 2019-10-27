@@ -17,7 +17,7 @@ function getAreaByCode(code) {
     code: code,
     province: _area3.default.province_list[pCode] || '',
     city: _area3.default.city_list[cCode] || '',
-    area: _area3.default.county_list[code] || ''
+    area: _area3.default.area_list[code] || ''
   };
 }
 
@@ -54,7 +54,7 @@ function getTargetAreaListByCode(target, code, parent) {
     var list = _area3.default[{
       province: 'province_list',
       city: 'city_list',
-      area: 'county_list'
+      area: 'area_list'
     }[target]] || [];
     code = code.slice(0, compareNum - 2);
     if (code) {
@@ -94,7 +94,7 @@ function getAreaByAddress(_ref) {
       area = _ref.area;
   var province_list = _area3.default.province_list,
       city_list = _area3.default.city_list,
-      county_list = _area3.default.county_list;
+      area_list = _area3.default.area_list;
 
   var result = {
     code: '',
@@ -116,9 +116,9 @@ function getAreaByAddress(_ref) {
             result.city = _city;
             if (area) {
               _code_city = _code_city.substr(0, 4);
-              for (var _code_area in county_list) {
+              for (var _code_area in area_list) {
                 if (_code_area.indexOf(_code_city) === 0) {
-                  var _area = county_list[_code_area];
+                  var _area = area_list[_code_area];
                   if (_area.indexOf(area) === 0) {
                     result.code = _code_area;
                     result.area = _area;

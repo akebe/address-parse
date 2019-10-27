@@ -54,8 +54,8 @@ var ParseArea = function () {
           }, city);
         }
       }
-      for (var _code2 in _area2.default.county_list) {
-        var area = _area2.default.county_list[_code2];
+      for (var _code2 in _area2.default.area_list) {
+        var area = _area2.default.area_list[_code2];
         if (area.length > 2) {
           ParseArea.AreaShort[_code2] = AreaKeys.reduce(function (v, key) {
             return v.replace(key, '');
@@ -538,7 +538,7 @@ var ParseArea = function () {
   }, {
     key: 'parseByArea',
     value: function parseByArea(addressBase) {
-      var area_list = _area2.default.county_list;
+      var area_list = _area2.default.area_list;
       var results = [];
       var result = {
         province: '',

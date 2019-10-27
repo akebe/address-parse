@@ -12,7 +12,7 @@ function getAreaByCode(code) {
     code: code,
     province: AREA.province_list[pCode] || '',
     city: AREA.city_list[cCode] || '',
-    area: AREA.county_list[code] || '',
+    area: AREA.area_list[code] || '',
   };
 }
 
@@ -44,7 +44,7 @@ function getTargetAreaListByCode(target, code, parent) {
     const list = AREA[{
       province: 'province_list',
       city: 'city_list',
-      area: 'county_list',
+      area: 'area_list',
     }[target]] || [];
     code = code.slice(0, compareNum - 2);
     if (code) {
@@ -79,7 +79,7 @@ function getTargetAreaListByCode(target, code, parent) {
  * @returns {{code: string, province: string, city: string, area: string}}
  */
 function getAreaByAddress({province, city, area}) {
-  const {province_list, city_list, county_list} = AREA;
+  const {province_list, city_list, area_list} = AREA;
   const result = {
     code: '',
     province: '',
@@ -100,9 +100,9 @@ function getAreaByAddress({province, city, area}) {
             result.city = _city;
             if (area) {
               _code_city = _code_city.substr(0, 4);
-              for (let _code_area in county_list) {
+              for (let _code_area in area_list) {
                 if (_code_area.indexOf(_code_city) === 0) {
-                  let _area = county_list[_code_area];
+                  let _area = area_list[_code_area];
                   if (_area.indexOf(area) === 0) {
                     result.code = _code_area;
                     result.area = _area;

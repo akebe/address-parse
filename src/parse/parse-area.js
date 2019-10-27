@@ -50,8 +50,8 @@ class ParseArea {
         ParseArea.CityShort[code] = CityKeys.reduce((v, key) => v.replace(key, ''), city);
       }
     }
-    for (let code in AREA.county_list) {
-      let area = AREA.county_list[code];
+    for (let code in AREA.area_list) {
+      let area = AREA.area_list[code];
       if (area.length > 2) {
         ParseArea.AreaShort[code] = AreaKeys.reduce((v, key) => v.replace(key, ''), area);
       }
@@ -342,7 +342,7 @@ class ParseArea {
    * @returns {Array}
    */
   static parseByArea(addressBase) {
-    const area_list = AREA.county_list;
+    const area_list = AREA.area_list;
     const results = [];
     const result = {
       province: '',

@@ -47,13 +47,13 @@ function getTargetAreaListByCode(target, code, parent) {
       var _code2 = code.slice(0, 2) + '000000'.slice(0, 4);
       result.push({
         code: _code2,
-        name: _area3.default.province_list[_code2]
+        name: _area3.default.province_list[_code2] || ''
       });
     }
     var _code = code.slice(0, 4) + '000000'.slice(0, 2);
     result.push({
       code: _code,
-      name: _area3.default.city_list[_code]
+      name: _area3.default.city_list[_code] || ''
     });
   } else {
     var list = _area3.default[{

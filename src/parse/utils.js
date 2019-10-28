@@ -37,13 +37,13 @@ function getTargetAreaListByCode(target, code, parent) {
       let _code = code.slice(0, 2) + '000000'.slice(0, 4);
       result.push({
         code: _code,
-        name: AREA.province_list[_code],
+        name: AREA.province_list[_code] || '',
       });
     }
     let _code = code.slice(0, 4) + '000000'.slice(0, 2);
     result.push({
       code: _code,
-      name: AREA.city_list[_code],
+      name: AREA.city_list[_code] || '',
     });
   } else {
     const list = AREA[{

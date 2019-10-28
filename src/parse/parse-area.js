@@ -80,14 +80,16 @@ class ParseArea {
 
     // 正向解析
     this.results.unshift(...ParseArea.parseByProvince(address));
-    if (parseAll || !this.results[0] || !this.results[0].city) {
+    if (parseAll || !this.results[0] || !this.results[0].__parse) {
       // 逆向城市解析  通过所有CityShort匹配
       this.results.unshift(...ParseArea.parseByCity(address));
-      if (parseAll || !this.results[0] || !this.results[0].city) {
+      if (parseAll || !this.results[0] || !this.results[0].__parse) {
         // 逆向地区解析   通过所有AreaShort匹配
         this.results.unshift(...ParseArea.parseByArea(address));
       }
     }
+    // 可信度排序
+    this.results.sort((a, b) => a.__parse ? (b.__parse ? 0 : -1) : (a.name.length > b.name.length ? 1 : -1));
 
     return this.results;
   }
@@ -106,6 +108,7 @@ class ParseArea {
       name: '',
       code: '',
       __type: 'parseByProvince',
+      __parse: false,
     };
     let address = addressBase;
     for (let code in province_list) {
@@ -142,6 +145,7 @@ class ParseArea {
         }
         if (result.city) {
           address = __address;
+          result.__parse = true;
           break;
         } else {
           //如果没有识别到地区 缓存本次结果，并重置数据
@@ -275,8 +279,8 @@ class ParseArea {
       name: '',
       code: '',
       __type: 'parseByCity',
+      __parse: false,
     };
-    let isParse = false;
     let address = addressBase;
     for (let code in city_list) {
       const city = city_list[code];
@@ -314,7 +318,7 @@ class ParseArea {
         address = address.substr(index + cityLength);
         address = ParseArea.parse_area_by_city(address, result);
         if (_provinceName || result.area) {
-          isParse = true;
+          result.__parse = true;
           break;
         } else {
           //如果没有识别到省份和地区 缓存本次结果，并重置数据
@@ -329,10 +333,6 @@ class ParseArea {
     }
     if (result.code) {
       results.unshift({...result, details: address.trim()});
-    }
-    // 没有标准识别的情况下 缓存列表按name排序，左侧最短的最接近
-    if (!isParse && results.length) {
-      results.sort((a, b) => a.name.length > b.name.length ? 1 : -1);
     }
     return results;
   }
@@ -352,8 +352,8 @@ class ParseArea {
       name: '',
       code: '',
       __type: 'parseByArea',
+      __parse: false,
     };
-    let isParse = false;
     let address = addressBase;
     for (let code in area_list) {
       const area = area_list[code];
@@ -402,7 +402,7 @@ class ParseArea {
         address = address.substr(index + areaLength);
 
         if (_provinceName || _cityName) {
-          isParse = true;
+          result.__parse = true;
           break;
         } else {
           //如果没有识别到省份和地区 缓存本次结果，并重置数据
@@ -418,10 +418,6 @@ class ParseArea {
     }
     if (result.code) {
       results.unshift({...result, details: address.trim()});
-    }
-    // 没有标准识别的情况下 缓存列表按name排序，左侧最短的最接近
-    if (!isParse && results.length) {
-      results.sort((a, b) => a.name.length > b.name.length ? 1 : -1);
     }
     return results;
   }

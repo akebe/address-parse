@@ -94,18 +94,22 @@ var ParseArea = function () {
 
       // 正向解析
       (_results = this.results).unshift.apply(_results, _toConsumableArray(ParseArea.parseByProvince(address)));
-      if (parseAll || !this.results[0] || !this.results[0].city) {
+      if (parseAll || !this.results[0] || !this.results[0].__parse) {
         var _results2;
 
         // 逆向城市解析  通过所有CityShort匹配
         (_results2 = this.results).unshift.apply(_results2, _toConsumableArray(ParseArea.parseByCity(address)));
-        if (parseAll || !this.results[0] || !this.results[0].city) {
+        if (parseAll || !this.results[0] || !this.results[0].__parse) {
           var _results3;
 
           // 逆向地区解析   通过所有AreaShort匹配
           (_results3 = this.results).unshift.apply(_results3, _toConsumableArray(ParseArea.parseByArea(address)));
         }
       }
+      // 可信度排序
+      this.results.sort(function (a, b) {
+        return a.__parse ? b.__parse ? 0 : -1 : a.name.length > b.name.length ? 1 : -1;
+      });
 
       return this.results;
     }
@@ -126,7 +130,8 @@ var ParseArea = function () {
         details: '',
         name: '',
         code: '',
-        __type: 'parseByProvince'
+        __type: 'parseByProvince',
+        __parse: false
       };
       var address = addressBase;
       for (var code in province_list) {
@@ -184,6 +189,7 @@ var ParseArea = function () {
           }
           if (result.city) {
             address = __address;
+            result.__parse = true;
             break;
           } else {
             //如果没有识别到地区 缓存本次结果，并重置数据
@@ -462,9 +468,9 @@ var ParseArea = function () {
         details: '',
         name: '',
         code: '',
-        __type: 'parseByCity'
+        __type: 'parseByCity',
+        __parse: false
       };
-      var isParse = false;
       var address = addressBase;
       for (var code in city_list) {
         var city = city_list[code];
@@ -505,7 +511,7 @@ var ParseArea = function () {
           address = address.substr(index + cityLength);
           address = ParseArea.parse_area_by_city(address, result);
           if (_provinceName || result.area) {
-            isParse = true;
+            result.__parse = true;
             break;
           } else {
             //如果没有识别到省份和地区 缓存本次结果，并重置数据
@@ -520,12 +526,6 @@ var ParseArea = function () {
       }
       if (result.code) {
         results.unshift(_extends({}, result, { details: address.trim() }));
-      }
-      // 没有标准识别的情况下 缓存列表按name排序，左侧最短的最接近
-      if (!isParse && results.length) {
-        results.sort(function (a, b) {
-          return a.name.length > b.name.length ? 1 : -1;
-        });
       }
       return results;
     }
@@ -547,9 +547,9 @@ var ParseArea = function () {
         details: '',
         name: '',
         code: '',
-        __type: 'parseByArea'
+        __type: 'parseByArea',
+        __parse: false
       };
-      var isParse = false;
       var address = addressBase;
       for (var code in area_list) {
         var area = area_list[code];
@@ -603,7 +603,7 @@ var ParseArea = function () {
           address = address.substr(index + areaLength);
 
           if (_provinceName || _cityName) {
-            isParse = true;
+            result.__parse = true;
             break;
           } else {
             //如果没有识别到省份和地区 缓存本次结果，并重置数据
@@ -619,12 +619,6 @@ var ParseArea = function () {
       }
       if (result.code) {
         results.unshift(_extends({}, result, { details: address.trim() }));
-      }
-      // 没有标准识别的情况下 缓存列表按name排序，左侧最短的最接近
-      if (!isParse && results.length) {
-        results.sort(function (a, b) {
-          return a.name.length > b.name.length ? 1 : -1;
-        });
       }
       return results;
     }

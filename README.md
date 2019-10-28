@@ -21,6 +21,7 @@ console.log(result);
   'name': 'asseek',
   'code': '350181',
   '__type': 'parseByProvince',     //结果解析使用函数 parseByProvince parseByCity parseByArea
+  '__parse': true,                 //为true的结果可信度高
   'mobile': '15000000000',
   'zip_code': '',
   'phone': '',

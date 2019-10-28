@@ -13,3 +13,8 @@
 ##1.0.6
 #####2019-10-28
 修复getTargetAreaListByCode值可能为undefined的错误
+##1.0.7
+#####2019-10-28
+回调对象添加__parse属性标识可信度  
+修复parseByCity不可信不执行parseByArea的问题  
+优化结果可信度排序

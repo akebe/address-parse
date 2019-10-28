@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="包内添加npm依赖">
+    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="添加__parse属性，修复parseByCity不可信不执行parseByArea">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UPDATE.md" beforeDir="false" afterPath="$PROJECT_DIR$/UPDATE.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/parse/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/parse/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/parse/parse-area.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/parse-area.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parse/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parse/parse-area.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse/parse-area.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,20 +24,20 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="76">
-                <caret line="4" column="65" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="65" />
+              <first_editor relative-caret-position="437">
+                <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
               </first_editor>
               <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UPDATE.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UPDATE.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UPDATE.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="95">
-                <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+              <first_editor relative-caret-position="361">
+                <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
               </first_editor>
               <second_editor />
             </state>
@@ -46,17 +47,17 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+            <state relative-caret-position="361">
+              <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="49" lean-forward="true" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+            <state relative-caret-position="241">
+              <caret line="38" column="3" lean-forward="true" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="3" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -67,8 +68,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/parse/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-80">
-              <caret line="101" column="5" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
+            <state relative-caret-position="1159">
+              <caret line="61" column="21" lean-forward="true" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#61#88#0" expanded="true" />
@@ -80,8 +81,8 @@
       <file leaf-file-name="parse-area.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/parse/parse-area.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+            <state relative-caret-position="6558">
+              <caret line="420" column="5" selection-start-line="420" selection-start-column="5" selection-end-line="420" selection-end-column="5" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#61#88#0" expanded="true" />
@@ -90,21 +91,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dist/parse/index.js">
+      <file leaf-file-name="test.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dist/test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3006" />
+            <state relative-caret-position="-228" />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/parse/utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="85" column="47" selection-start-line="85" selection-start-column="27" selection-end-line="85" selection-end-column="47" />
+            <state relative-caret-position="91">
+              <caret line="31" column="32" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="32" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="area.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dist/area.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="area.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/area.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="2311" column="11" selection-start-line="2311" selection-start-column="5" selection-end-line="2311" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -122,6 +141,10 @@
     <findStrings>
       <find>county_list</find>
       <find>mobile</find>
+      <find>lastIndex</find>
+      <find>221000</find>
+      <find>龙湖区</find>
+      <find>result.city</find>
     </findStrings>
     <replaceStrings>
       <replace>area_list</replace>
@@ -135,12 +158,13 @@
       <list>
         <option value="$PROJECT_DIR$/src/demo.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/parse/index.js" />
         <option value="$PROJECT_DIR$/src/parse/utils.js" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/test.js" />
-        <option value="$PROJECT_DIR$/src/parse/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/parse/parse-area.js" />
         <option value="$PROJECT_DIR$/UPDATE.md" />
+        <option value="$PROJECT_DIR$/src/test.js" />
       </list>
     </option>
   </component>
@@ -279,7 +303,7 @@
       <workItem from="1572181609024" duration="245000" />
       <workItem from="1572181935587" duration="549000" />
       <workItem from="1572182528805" duration="1765000" />
-      <workItem from="1572184508962" duration="6531000" />
+      <workItem from="1572184508962" duration="19403000" />
     </task>
     <task id="LOCAL-00001" summary="项目重构 1.0.0">
       <created>1572182652861</created>
@@ -351,11 +375,53 @@
       <option name="project" value="LOCAL" />
       <updated>1572189407725</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="修复正则表达式lastIndex问题 1.0.3">
+      <created>1572191363707</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1572191363707</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update readme">
+      <created>1572192544790</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1572192544790</updated>
+    </task>
+    <task id="LOCAL-00013" summary="正则表达式Reg对象通过Utils暴露 1.0.4">
+      <created>1572227984705</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1572227984705</updated>
+    </task>
+    <task id="LOCAL-00014" summary="修复ParseArea没有解析成功就不返回数据的问题">
+      <created>1572234586728</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1572234586728</updated>
+    </task>
+    <task id="LOCAL-00015" summary="修复ParseArea没有解析成功就不返回数据的问题">
+      <created>1572234608192</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1572234608192</updated>
+    </task>
+    <task id="LOCAL-00016" summary="修复getTargetAreaListByCode值可能为undefined的错误">
+      <created>1572240727371</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1572240727371</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12200000" />
+    <option name="totallyTimeSpent" value="25072000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
@@ -365,7 +431,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32998884" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.845039" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.42586398" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32998884" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26091588" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
@@ -400,7 +466,12 @@
     <MESSAGE value="license" />
     <MESSAGE value="issues" />
     <MESSAGE value="包内添加npm依赖" />
-    <option name="LAST_COMMIT_MESSAGE" value="包内添加npm依赖" />
+    <MESSAGE value="修复正则表达式lastIndex问题 1.0.3" />
+    <MESSAGE value="update readme" />
+    <MESSAGE value="正则表达式Reg对象通过Utils暴露 1.0.4" />
+    <MESSAGE value="修复ParseArea没有解析成功就不返回数据的问题" />
+    <MESSAGE value="修复getTargetAreaListByCode值可能为undefined的错误" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复getTargetAreaListByCode值可能为undefined的错误" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/README.md">
@@ -558,38 +629,84 @@
     <entry file="file://$PROJECT_DIR$/src/demo.js" />
     <entry file="file://$PROJECT_DIR$/src/address-parse.js" />
     <entry file="file://$PROJECT_DIR$/src/demo.js" />
+    <entry file="file://$PROJECT_DIR$/dist/parse/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="155" column="16" selection-start-line="155" selection-start-column="16" selection-end-line="155" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/parse/utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="85" column="47" selection-start-line="85" selection-start-column="27" selection-end-line="85" selection-end-column="47" />
+        <state relative-caret-position="91">
+          <caret line="31" column="32" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="32" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dist/area.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/area.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="2311" column="11" selection-start-line="2311" selection-start-column="5" selection-end-line="2311" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="76">
-            <caret line="4" column="65" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="65" />
+          <first_editor relative-caret-position="437">
+            <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/parse/index.js">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3006" />
+        <state relative-caret-position="361">
+          <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parse/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1159">
+          <caret line="61" column="21" lean-forward="true" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#61#88#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UPDATE.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="361">
+            <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          </first_editor>
+          <second_editor />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/test.js">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-228" />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/parse/parse-area.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+        <state relative-caret-position="6558">
+          <caret line="420" column="5" selection-start-line="420" selection-start-column="5" selection-end-line="420" selection-end-column="5" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#61#88#0" expanded="true" />
@@ -599,39 +716,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="49" lean-forward="true" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+        <state relative-caret-position="241">
+          <caret line="38" column="3" lean-forward="true" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="3" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-80">
-          <caret line="101" column="5" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#61#88#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UPDATE.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="95">
-            <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>

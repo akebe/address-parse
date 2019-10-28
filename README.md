@@ -61,6 +61,9 @@ const [city] = Utils.getTargetAreaListByCode('city', '350181', true);
 // 非标准地区对象转换为标准地区对象
 const result = Utils.getAreaByAddress({province: '福建', city: '福州', area: '福清'});
 // {"code":"350181","province":"福建省","city":"福州市","area":"福清市"}
+
+// 提供几个内置正则表达式
+Utils.Reg. //mobile phone zipCode
 ````
 ### LICENSE
 [MIT](https://en.wikipedia.org/wiki/MIT_License)

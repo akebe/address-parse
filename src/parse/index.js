@@ -14,9 +14,7 @@ class ParseAddress {
   static ParseArea = new ParseArea();
 
   static Reg = {
-    mobile: /(86-[1][0-9]{10})|(86[1][0-9]{10})|([1][0-9]{10})/g,
-    phone: /(([0-9]{3,4}-)[0-9]{7,8})|([0-9]{12})|([0-9]{11})|([0-9]{10})|([0-9]{9})|([0-9]{8})|([0-9]{7})/g,
-    zipCode: /([0-9]{6})/g,
+    ...Utils.Reg,
   };
 
   constructor(address) {
@@ -71,36 +69,36 @@ class ParseAddress {
    * 提取手机号码
    */
   parseMobile() {
+    ParseAddress.Reg.mobile.lastIndex = 0;
     const mobile = ParseAddress.Reg.mobile.exec(this.address);
     if (mobile) {
       this.result.mobile = mobile[0];
       this.address = this.address.replace(mobile[0], ' ');
     }
-    ParseAddress.Reg.mobile.lastIndex = 0;
   }
 
   /**
    * 提取电话号码
    */
   parsePhone() {
+    ParseAddress.Reg.phone.lastIndex = 0;
     const phone = ParseAddress.Reg.phone.exec(this.address);
     if (phone) {
       this.result.phone = phone[0];
       this.address = this.address.replace(phone[0], ' ');
     }
-    ParseAddress.Reg.phone.lastIndex = 0;
   }
 
   /**
    * 提取邮编
    */
   parseZipCode() {
+    ParseAddress.Reg.zipCode.lastIndex = 0;
     const zip = ParseAddress.Reg.zipCode.exec(this.address);
     if (zip) {
       this.result.zip_code = zip[0];
       this.address = this.address.replace(zip[0], '');
     }
-    ParseAddress.Reg.zipCode.lastIndex = 0;
   }
 
   /**

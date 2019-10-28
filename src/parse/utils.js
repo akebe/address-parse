@@ -139,11 +139,18 @@ function strLen(str) {
   return len;
 }
 
+const Reg = {
+  mobile: /(86-[1][0-9]{10})|(86[1][0-9]{10})|([1][0-9]{10})/g,
+  phone: /(([0-9]{3,4}-)[0-9]{7,8})|([0-9]{12})|([0-9]{11})|([0-9]{10})|([0-9]{9})|([0-9]{8})|([0-9]{7})/g,
+  zipCode: /([0-9]{6})/g,
+};
+
 const Utils = {
   strLen,
   getAreaByCode,
   getAreaByAddress,
   getTargetAreaListByCode,
+  Reg,
 };
 
 export default Utils;

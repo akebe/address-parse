@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Utils = exports.AREA = exports.ParseAddress = undefined;
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * address-parse
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * MIT License
@@ -135,12 +137,12 @@ var ParseAddress = function () {
   }, {
     key: 'parseMobile',
     value: function parseMobile() {
+      ParseAddress.Reg.mobile.lastIndex = 0;
       var mobile = ParseAddress.Reg.mobile.exec(this.address);
       if (mobile) {
         this.result.mobile = mobile[0];
         this.address = this.address.replace(mobile[0], ' ');
       }
-      ParseAddress.Reg.mobile.lastIndex = 0;
     }
 
     /**
@@ -150,12 +152,12 @@ var ParseAddress = function () {
   }, {
     key: 'parsePhone',
     value: function parsePhone() {
+      ParseAddress.Reg.phone.lastIndex = 0;
       var phone = ParseAddress.Reg.phone.exec(this.address);
       if (phone) {
         this.result.phone = phone[0];
         this.address = this.address.replace(phone[0], ' ');
       }
-      ParseAddress.Reg.phone.lastIndex = 0;
     }
 
     /**
@@ -165,12 +167,12 @@ var ParseAddress = function () {
   }, {
     key: 'parseZipCode',
     value: function parseZipCode() {
+      ParseAddress.Reg.zipCode.lastIndex = 0;
       var zip = ParseAddress.Reg.zipCode.exec(this.address);
       if (zip) {
         this.result.zip_code = zip[0];
         this.address = this.address.replace(zip[0], '');
       }
-      ParseAddress.Reg.zipCode.lastIndex = 0;
     }
 
     /**
@@ -214,11 +216,7 @@ var ParseAddress = function () {
 
 ParseAddress.ExcludeKeys = ['发件人', '收货地址', '收货人', '收件人', '收货', '手机号码', '邮编', '电话', '所在地区', '详细地址', '地址', '：', ':', '；', ';', '，', ',', '。', '、'];
 ParseAddress.ParseArea = new _parseArea2.default();
-ParseAddress.Reg = {
-  mobile: /(86-[1][0-9]{10})|(86[1][0-9]{10})|([1][0-9]{10})/g,
-  phone: /(([0-9]{3,4}-)[0-9]{7,8})|([0-9]{12})|([0-9]{11})|([0-9]{10})|([0-9]{9})|([0-9]{8})|([0-9]{7})/g,
-  zipCode: /([0-9]{6})/g
-};
+ParseAddress.Reg = _extends({}, _utils2.default.Reg);
 exports.ParseAddress = ParseAddress;
 exports.AREA = _area2.default;
 exports.Utils = _utils2.default;

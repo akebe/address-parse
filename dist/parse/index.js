@@ -50,44 +50,61 @@ var ParseAddress = function () {
   _createClass(ParseAddress, [{
     key: 'parse',
     value: function parse(address, parseAll) {
-      this.result = {
-        mobile: '',
-        zip_code: '',
-        phone: ''
-      };
+      var results = [];
+      if (address) {
+        this.result = {
+          mobile: '',
+          zip_code: '',
+          phone: ''
+        };
 
-      this.address = address;
-      this.replace();
-      this.parseMobile();
-      this.parsePhone();
-      this.parseZipCode();
-      this.address = this.address.replace(/ {2,}/, ' ');
+        this.address = address;
+        this.replace();
+        this.parseMobile();
+        this.parsePhone();
+        this.parseZipCode();
+        this.address = this.address.replace(/ {2,}/, ' ');
 
-      var results = ParseAddress.ParseArea.parse(this.address, parseAll);
+        results = ParseAddress.ParseArea.parse(this.address, parseAll);
 
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
 
-      try {
-        for (var _iterator = results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var result = _step.value;
-
-          Object.assign(result, this.result);
-          ParseAddress.parseName(result);
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
         try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
+          for (var _iterator = results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var _result = _step.value;
+
+            Object.assign(_result, this.result);
+            ParseAddress.parseName(_result);
           }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
         } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
+          try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+              _iterator.return();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
           }
+        }
+
+        if (!results.length) {
+          var result = Object.assign(this.result, {
+            province: '',
+            city: '',
+            area: '',
+            details: this.address,
+            name: '',
+            code: '',
+            __type: ''
+          });
+          ParseAddress.parseName(result);
+          results.push(result);
         }
       }
 

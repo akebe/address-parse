@@ -30,24 +30,40 @@ class ParseAddress {
    * @returns {Array}
    */
   parse(address, parseAll) {
-    this.result = {
-      mobile: '',
-      zip_code: '',
-      phone: '',
-    };
+    let results = [];
+    if (address) {
+      this.result = {
+        mobile: '',
+        zip_code: '',
+        phone: '',
+      };
 
-    this.address = address;
-    this.replace();
-    this.parseMobile();
-    this.parsePhone();
-    this.parseZipCode();
-    this.address = this.address.replace(/ {2,}/, ' ');
+      this.address = address;
+      this.replace();
+      this.parseMobile();
+      this.parsePhone();
+      this.parseZipCode();
+      this.address = this.address.replace(/ {2,}/, ' ');
 
-    let results = ParseAddress.ParseArea.parse(this.address, parseAll);
+      results = ParseAddress.ParseArea.parse(this.address, parseAll);
 
-    for (let result of results) {
-      Object.assign(result, this.result);
-      ParseAddress.parseName(result);
+      for (let result of results) {
+        Object.assign(result, this.result);
+        ParseAddress.parseName(result);
+      }
+      if (!results.length) {
+        let result = Object.assign(this.result, {
+          province: '',
+          city: '',
+          area: '',
+          details: this.address,
+          name: '',
+          code: '',
+          __type: '',
+        });
+        ParseAddress.parseName(result);
+        results.push(result);
+      }
     }
 
     return results;

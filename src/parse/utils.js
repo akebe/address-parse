@@ -22,6 +22,35 @@ function getAreaByCode(code) {
 }
 
 /**
+ * 通过code取父省市对象
+ * @param target province/city/area
+ * @param code
+ * @returns {Array} [province, city, area]
+ */
+function getTargetParentAreaListByCode(target, code) {
+  const result = [];
+  result.unshift({
+    code,
+    name: AREA.area_list[code] || '',
+  });
+  if (['city', 'province'].includes(target)) {
+    code = code.slice(0, 4) + '00';
+    result.unshift({
+      code,
+      name: AREA.city_list[code] || '',
+    });
+  }
+  if (target === 'province') {
+    code = code.slice(0, 2) + '0000';
+    result.unshift({
+      code,
+      name: AREA.province_list[code] || '',
+    });
+  }
+  return result;
+}
+
+/**
  * 根据省市县类型和对应的`code`获取对应列表
  * 只能逐级获取 province->city->area OK  province->area ERROR
  * @param target String province city area
@@ -30,46 +59,43 @@ function getAreaByCode(code) {
  * @returns {*}
  */
 function getTargetAreaListByCode(target, code, parent) {
-  const result = [];
-  let compareNum = target === 'province' ? 2 : target === 'city' ? 4 : 6;
-  if (parent) {
-    if (target === 'province') {
-      let _code = code.slice(0, 2) + '000000'.slice(0, 4);
-      result.push({
-        code: _code,
-        name: AREA.province_list[_code] || '',
-      });
-    }
-    let _code = code.slice(0, 4) + '000000'.slice(0, 2);
-    result.push({
-      code: _code,
-      name: AREA.city_list[_code] || '',
-    });
-  } else {
-    const list = AREA[{
-      province: 'province_list',
-      city: 'city_list',
-      area: 'area_list',
-    }[target]] || [];
-    code = code.slice(0, compareNum - 2);
-    if (code) {
-      const tail = code.length === 2 ? '00' : '';
-      for (let i = 0; i < 100; i++) {
-        const c = `${code}${i < 9 ? '0' : ''}${i}${tail}`;
-        if (list[c]) {
+  if (parent) return getTargetParentAreaListByCode(target, code);
+  let result = [];
+  let list = AREA[{
+    city: 'city_list',
+    area: 'area_list',
+  }[target]];
+  if (code && list) {
+    code = code.toString();
+    let provinceCode = code.slice(0, 2);
+    for (let i = 0; i < 91; i++) {  //最大city编码只到91
+      //只有city跟area
+      code = `${provinceCode}${i < 9 ? '0' : ''}${i}${target === 'city' ? '00' : ''}`;
+      if (target === 'city') {
+        if (list[code]) {
           result.push({
-            code: c,
-            name: list[c],
+            code,
+            name: list[code],
           });
         }
+      } else {
+        for (let j = 0; j < 100; j++) {
+          let _code = `${code}${j < 9 ? '0' : ''}${j}`;
+          if (list[_code]) {
+            result.push({
+              code: _code,
+              name: list[_code],
+            });
+          }
+        }
       }
-    } else {
-      for (let c in list) {
-        result.push({
-          code: c,
-          name: list[c],
-        });
-      }
+    }
+  } else {
+    for (let code in list) {
+      result.push({
+        code,
+        name: list[code],
+      });
     }
   }
   return result;

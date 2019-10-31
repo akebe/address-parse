@@ -18,3 +18,7 @@
 回调对象添加__parse属性标识可信度  
 修复parseByCity不可信不执行parseByArea的问题  
 优化结果可信度排序
+##1.0.8
+#####2019-10-31
+修复因getTargetAreaListByCode函数不生效导致的解析问题  
+添加Utils.getTargetParentAreaListByCode解耦处理getTargetAreaListByCode带第三个参数的逻辑

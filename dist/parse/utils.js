@@ -27,6 +27,40 @@ function getAreaByCode(code) {
 }
 
 /**
+ * 通过code取父省市对象
+ * @param target province/city/area
+ * @param code
+ * @returns {Array} [province, city, area]
+ */
+/**
+ * address-parse
+ * MIT License
+ * By www.asseek.com
+ */
+function getTargetParentAreaListByCode(target, code) {
+  var result = [];
+  result.unshift({
+    code: code,
+    name: _area3.default.area_list[code] || ''
+  });
+  if (['city', 'province'].includes(target)) {
+    code = code.slice(0, 4) + '00';
+    result.unshift({
+      code: code,
+      name: _area3.default.city_list[code] || ''
+    });
+  }
+  if (target === 'province') {
+    code = code.slice(0, 2) + '0000';
+    result.unshift({
+      code: code,
+      name: _area3.default.province_list[code] || ''
+    });
+  }
+  return result;
+}
+
+/**
  * 根据省市县类型和对应的`code`获取对应列表
  * 只能逐级获取 province->city->area OK  province->area ERROR
  * @param target String province city area
@@ -34,52 +68,45 @@ function getAreaByCode(code) {
  * @param parent 默认获取子列表 如果要获取的是父对象 传true
  * @returns {*}
  */
-/**
- * address-parse
- * MIT License
- * By www.asseek.com
- */
 function getTargetAreaListByCode(target, code, parent) {
+  if (parent) return getTargetParentAreaListByCode(target, code);
   var result = [];
-  var compareNum = target === 'province' ? 2 : target === 'city' ? 4 : 6;
-  if (parent) {
-    if (target === 'province') {
-      var _code2 = code.slice(0, 2) + '000000'.slice(0, 4);
-      result.push({
-        code: _code2,
-        name: _area3.default.province_list[_code2] || ''
-      });
-    }
-    var _code = code.slice(0, 4) + '000000'.slice(0, 2);
-    result.push({
-      code: _code,
-      name: _area3.default.city_list[_code] || ''
-    });
-  } else {
-    var list = _area3.default[{
-      province: 'province_list',
-      city: 'city_list',
-      area: 'area_list'
-    }[target]] || [];
-    code = code.slice(0, compareNum - 2);
-    if (code) {
-      var tail = code.length === 2 ? '00' : '';
-      for (var i = 0; i < 100; i++) {
-        var c = '' + code + (i < 9 ? '0' : '') + i + tail;
-        if (list[c]) {
+  var list = _area3.default[{
+    city: 'city_list',
+    area: 'area_list'
+  }[target]];
+  if (code && list) {
+    code = code.toString();
+    var provinceCode = code.slice(0, 2);
+    for (var i = 0; i < 91; i++) {
+      //最大city编码只到91
+      //只有city跟area
+      code = '' + provinceCode + (i < 9 ? '0' : '') + i + (target === 'city' ? '00' : '');
+      if (target === 'city') {
+        if (list[code]) {
           result.push({
-            code: c,
-            name: list[c]
+            code: code,
+            name: list[code]
           });
         }
+      } else {
+        for (var j = 0; j < 100; j++) {
+          var _code = '' + code + (j < 9 ? '0' : '') + j;
+          if (list[_code]) {
+            result.push({
+              code: _code,
+              name: list[_code]
+            });
+          }
+        }
       }
-    } else {
-      for (var _c in list) {
-        result.push({
-          code: _c,
-          name: list[_c]
-        });
-      }
+    }
+  } else {
+    for (var _code2 in list) {
+      result.push({
+        code: _code2,
+        name: list[_code2]
+      });
     }
   }
   return result;

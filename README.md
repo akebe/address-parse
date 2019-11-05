@@ -66,5 +66,9 @@ const result = Utils.getAreaByAddress({province: '福建', city: '福州', area:
 // 提供几个内置正则表达式
 Utils.Reg. //mobile phone zipCode
 ````
+### 组件库
+ [element-address](https://github.com/akebe/element-address)  
+ 基于 [address-parse](https://github.com/akebe/address-parse) 通过 [element-ui](https://github.com/ElemeFE/element) 实现的即开即用地址类组件库
+ 
 ### LICENSE
 [MIT](https://en.wikipedia.org/wiki/MIT_License)

@@ -108,7 +108,7 @@ var ParseArea = function () {
       }
       // 可信度排序
       this.results.sort(function (a, b) {
-        return a.__parse ? b.__parse ? 0 : -1 : a.name.length > b.name.length ? 1 : -1;
+        return a.__parse && !b.__parse ? -1 : !a.__parse && b.__parse ? 1 : a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0;
       });
 
       return this.results;

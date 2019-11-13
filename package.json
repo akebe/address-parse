@@ -1,7 +1,7 @@
 {
   "name": "address-parse",
   "author": "akebe <asseek@163.com>",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "cn address parse",
   "main": "dist/parse/index.js",
   "devDependencies": {
@@ -20,11 +20,12 @@
     "address-parse"
   ],
   "dependencies": {
-    "address-parse": "^1.0.8"
+    "address-parse": "^1.0.9"
   },
   "scripts": {
     "build": "babel src -d dist --presets es2015,stage-2",
     "test": "node dist/test.js",
+    "test_src": "node src/test.js",
     "build_test": "npm run build && npm run test"
   },
   "homepage": "https://github.com/akebe/address-parse",

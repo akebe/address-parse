@@ -5,6 +5,8 @@
  */
 import Parse from './parse';
 
+//const Parse = require('address-parse').default;
+
 // 测试地址 规则更新需要确保这里面的地址可以被正确解析
 const list = [
   ['福建省福州市福清市石竹街道义明综合楼3F，15000000000，asseek', '350181'],
@@ -22,6 +24,8 @@ const list = [
   ['张l,15222222222,和林格尔 盛乐经济工业园区内蒙古师范大学盛乐校区十三号楼,011500', '150123'],
   '上海市徐汇区 复兴中路1237号 5楼WeWork 200010 柚子',
   ['龙湖区黄山路潮华雅居10栋000房 肖小姐', '440507'],
+  ['西安市雁塔区丈八东路晶城秀府7号楼2单元     李飞15609293911', '610113'],
+  ['湖北省安陆市西亚小铺，文元13377777788', '420982'],
 ];
 
 let index = 0;
@@ -33,7 +37,6 @@ for (let v of list) {
   let code = Array.isArray(v) ? v[1] : '';
   //let [result, ...results] = Parse.parse(address, true);
   let [result, ...results] = Parse.parse(address);
-
   let status = code ? result.code === code : !!result.area;
   if (!status) isSuccess = false;
   //console.log(index, code ? result.code === code : !!result.area, result, results);

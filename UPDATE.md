@@ -22,3 +22,6 @@
 #####2019-10-31
 修复因getTargetAreaListByCode函数不生效导致的解析问题  
 添加Utils.getTargetParentAreaListByCode解耦处理getTargetAreaListByCode带第三个参数的逻辑
+##1.0.9
+#####2019-11-13
+修复可信结果排序无效的问题

@@ -1,7 +1,7 @@
 {
   "name": "address-parse",
   "author": "akebe <asseek@163.com>",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "cn address parse",
   "main": "dist/parse/index.js",
   "devDependencies": {
@@ -20,7 +20,7 @@
     "address-parse"
   ],
   "dependencies": {
-    "address-parse": "^1.0.9"
+    "address-parse": "^1.0.10"
   },
   "scripts": {
     "build": "babel src -d dist --presets es2015,stage-2",

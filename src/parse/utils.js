@@ -70,7 +70,7 @@ function getTargetAreaListByCode(target, code, parent) {
     let provinceCode = code.slice(0, 2);
     for (let i = 0; i < 91; i++) {  //最大city编码只到91
       //只有city跟area
-      code = `${provinceCode}${i < 9 ? '0' : ''}${i}${target === 'city' ? '00' : ''}`;
+      code = `${provinceCode}${i < 10 ? '0' : ''}${i}${target === 'city' ? '00' : ''}`;
       if (target === 'city') {
         if (list[code]) {
           result.push({
@@ -80,7 +80,7 @@ function getTargetAreaListByCode(target, code, parent) {
         }
       } else {
         for (let j = 0; j < 100; j++) {
-          let _code = `${code}${j < 9 ? '0' : ''}${j}`;
+          let _code = `${code}${j < 10 ? '0' : ''}${j}`;
           if (list[_code]) {
             result.push({
               code: _code,

@@ -52,6 +52,7 @@ class ParseArea {
     }
     for (let code in AREA.area_list) {
       let area = AREA.area_list[code];
+      if (area === '雨花台区') area = '雨花区';
       if (area.length > 2) {
         ParseArea.AreaShort[code] = AreaKeys.reduce((v, key) => v.replace(key, ''), area);
       }

@@ -56,6 +56,7 @@ var ParseArea = function () {
       }
       for (var _code2 in _area2.default.area_list) {
         var area = _area2.default.area_list[_code2];
+        if (area === '雨花台区') area = '雨花区';
         if (area.length > 2) {
           ParseArea.AreaShort[_code2] = AreaKeys.reduce(function (v, key) {
             return v.replace(key, '');

@@ -78,34 +78,48 @@ function getTargetAreaListByCode(target, code, parent) {
   if (code && list) {
     code = code.toString();
     var provinceCode = code.slice(0, 2);
-    for (var i = 0; i < 91; i++) {
-      //最大city编码只到91
-      //只有city跟area
-      code = '' + provinceCode + (i < 10 ? '0' : '') + i + (target === 'city' ? '00' : '');
-      if (target === 'city') {
-        if (list[code]) {
+    var cityCode = code.slice(2, 4);
+    if (target === 'area' && cityCode !== '00') {
+      code = '' + provinceCode + cityCode;
+      for (var j = 0; j < 100; j++) {
+        var _code = '' + code + (j < 10 ? '0' : '') + j;
+        if (list[_code]) {
           result.push({
-            code: code,
-            name: list[code]
+            code: _code,
+            name: list[_code]
           });
         }
-      } else {
-        for (var j = 0; j < 100; j++) {
-          var _code = '' + code + (j < 10 ? '0' : '') + j;
-          if (list[_code]) {
+      }
+    } else {
+      for (var i = 0; i < 91; i++) {
+        //最大city编码只到91
+        //只有city跟area
+        code = '' + provinceCode + (i < 10 ? '0' : '') + i + (target === 'city' ? '00' : '');
+        if (target === 'city') {
+          if (list[code]) {
             result.push({
-              code: _code,
-              name: list[_code]
+              code: code,
+              name: list[code]
             });
+          }
+        } else {
+          for (var _j = 0; _j < 100; _j++) {
+            var _code2 = '' + code + (_j < 10 ? '0' : '') + _j;
+            if (list[_code2]) {
+              result.push({
+                code: _code2,
+                name: list[_code2]
+              });
+            }
           }
         }
       }
     }
   } else {
-    for (var _code2 in list) {
+    for (var _code3 in list) {
       result.push({
-        code: _code2,
-        name: list[_code2]
+        code: _code3,
+        name: list[_code3]
       });
     }
   }

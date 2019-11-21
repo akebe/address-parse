@@ -12,7 +12,7 @@ const list = [
   ['福建省福州市福清市石竹街道义明综合楼3F，15000000000，asseek', '350181'],
   ['福建省福清市石竹街道义明综合楼3F，15000000000，asseek', '350181'],
   ['福州市福清市石竹街道义明综合楼3F，15000000000，asseek', '350181'],
-  ['福清市石竹街道义明综合楼3F，15000000000，asseek'],
+  ['福清市石竹街道义明综合楼3F，15000000000，asseek', '350181'],
   ['浙江省温州市乐清柳市镇', '330382'],
   ['李xx 13512222322 广西壮族自治区 桂林市 恭城瑶族自治县 恭城镇拱辰东路xx-xx号', '450332'],
   ['李xx 13512222222 恭城 恭城镇拱辰东路08-88号', '450332'],
@@ -26,7 +26,8 @@ const list = [
   ['龙湖区黄山路潮华雅居10栋000房 肖小姐', '440507'],
   ['西安市雁塔区丈八东路晶城秀府7号楼2单元     李飞', '610113'],
   ['湖北省安陆市西亚小铺，文元13377777788', '420982'],
-  ['福建宁德福鼎太姥山镇岭后路。 丹', '350982']
+  ['福建宁德福鼎太姥山镇岭后路。 丹', '350982'],
+  ['南京市雨花区小行路58号名城世家花园', '320114'],
 ];
 
 let index = 0;
@@ -38,10 +39,10 @@ for (let v of list) {
   let code = Array.isArray(v) ? v[1] : '';
   //let [result, ...results] = Parse.parse(address, true);
   let [result, ...results] = Parse.parse(address);
-  let status = code ? result.code === code : !!result.area;
+  let status = code ? result.code === code : result.__parse;
   if (!status) isSuccess = false;
   //console.log(index, code ? result.code === code : !!result.area, result, results);
-  console.log(index, code ? result.code === code : !!result.area, result);
+  console.log(index, code ? result.code === code : result.__parse, result);
   //console.log(index, code ? result.code === code : !!result.area);
 }
 

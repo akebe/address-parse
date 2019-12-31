@@ -66,6 +66,20 @@ const result = Utils.getAreaByAddress({province: '福建', city: '福州', area:
 // 提供几个内置正则表达式
 Utils.Reg. //mobile phone zipCode
 ````
+### 页面直接引入使用
+已打包成单文件`dist/bundle.js`
+可以直接通过标签引用
+```
+<script src="./bundle.js"></script>
+<script>
+ var results = AddressParse.parse('福建省福州市福清市石竹街道义明综合楼3F，15000000000，asseek');
+ console.log(results);
+</script>
+```
+可以使用全局变量`AddressParse`来调用。  
+包内暴露的方法已经直接挂载在`AddressParse`实例上以供调用
+
+
 ### 组件库
  [element-address](https://github.com/akebe/element-address)  
  基于 [address-parse](https://github.com/akebe/address-parse) 通过 [element-ui](https://github.com/ElemeFE/element) 实现的即开即用地址类组件库

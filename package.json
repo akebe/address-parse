@@ -1,7 +1,7 @@
 {
   "name": "address-parse",
   "author": "akebe <asseek@163.com>",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "description": "cn address parse",
   "main": "dist/parse/index.js",
   "devDependencies": {
@@ -12,7 +12,9 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "babel-register": "^6.26.0"
+    "babel-register": "^6.26.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "keywords": [
     "address",
@@ -20,13 +22,14 @@
     "address-parse"
   ],
   "dependencies": {
-    "address-parse": "^1.0.12"
+    "address-parse": "^1.1.0"
   },
   "scripts": {
     "build": "babel src -d dist --presets es2015,stage-2",
     "test": "node dist/test.js",
     "test_src": "node src/test.js",
-    "build_test": "npm run build && npm run test"
+    "build_test": "npm run build && npm run test",
+    "build-web": "webpack --config ./build/webpack.config.js"
   },
   "homepage": "https://github.com/akebe/address-parse",
   "repository": {

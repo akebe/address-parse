@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>AddressParse</title>
+  <script src="./bundle.js"></script>
+</head>
+<body>
+<div>请按F12打开控制台查看结果</div>
+<script>
+  const list = [
+    ['福建省福州市福清市石竹街道义明综合楼3F，15000000000，asseek', '350181'],
+    ['福建省福清市石竹街道义明综合楼3F，15000000000，asseek', '350181'],
+    ['福州市福清市石竹街道义明综合楼3F，15000000000，asseek', '350181'],
+    ['福清市石竹街道义明综合楼3F，15000000000，asseek', '350181'],
+    ['浙江省温州市乐清柳市镇', '330382'],
+    ['李xx 13512222322 广西壮族自治区 桂林市 恭城瑶族自治县 恭城镇拱辰东路xx-xx号', '450332'],
+    ['李xx 13512222222 恭城 恭城镇拱辰东路08-88号', '450332'],
+    ['四川成都高新区天府大道中段530号东方希望天祥广场a座4302号北京万商天勤(成都)律师事务所', '510191'],
+    '房pp,18263333333,山东省 德州市 乐陵市 市中街道怡然居小区,253600',
+    '张y,18802222222,黑龙江省 哈尔滨市 道里区 经纬街道经纬七道街,000000',
+    '深圳市龙华新区民治街道办民乐新村。陆xg15822222222',
+    '张l,15222222222,内蒙古自治区 呼和浩特市 和林格尔县 盛乐经济工业园区内蒙古师范大学盛乐校区十三号楼,011500',
+    ['张l,15222222222,和林格尔 盛乐经济工业园区内蒙古师范大学盛乐校区十三号楼,011500', '150123'],
+    '上海市徐汇区 复兴中路1237号 5楼WeWork 200010 柚子',
+    ['龙湖区黄山路潮华雅居10栋000房 肖小姐', '440507'],
+    ['西安市雁塔区丈八东路晶城秀府7号楼2单元     李飞', '610113'],
+    ['湖北省安陆市西亚小铺，文元13377777788', '420982'],
+    ['福建宁德福鼎太姥山镇岭后路。 丹', '350982'],
+    ['南京市雨花区小行路58号名城世家花园', '320114'],
+    '江苏省徐州市鼓楼区华府天地7号楼2单元302 袁园13776787888',
+  ];
+  let index = 0;
+  let isSuccess = true;
+  console.time('解析耗时');
+  for (let v of list) {
+    index += 1;
+    let address = Array.isArray(v) ? v[0] : v;
+    let code = Array.isArray(v) ? v[1] : '';
+    //let [result, ...results] = Parse.parse(address, true);
+    let [result, ...results] = AddressParse.parse(address);
+    let status = code ? result.code === code : result.__parse;
+    if (!status) isSuccess = false;
+    //console.log(index, code ? result.code === code : !!result.area, result, results);
+    console.log(index, code ? result.code === code : result.__parse, result);
+    //console.log(index, code ? result.code === code : !!result.area);
+  }
+
+  console.timeEnd('解析耗时');
+  console.log(`解析结果: ${isSuccess ? '通过' : '失败'}`);
+  console.log(AddressParse);
+</script>
+</body>
+</html>

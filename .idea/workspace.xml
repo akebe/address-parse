@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="添加__parse属性，修复parseByCity不可信不执行parseByArea">
-      <change afterPath="$PROJECT_DIR$/build/webpack.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="打包提供单文件，供页面直接引入使用">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/parse/parse-area.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/parse-area.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.js" afterDir="false" />
@@ -34,6 +28,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
@@ -132,7 +127,10 @@
       <workItem from="1576477347392" duration="7000" />
       <workItem from="1576477601795" duration="2453000" />
       <workItem from="1576646042274" duration="1206000" />
-      <workItem from="1577760862699" duration="3294000" />
+      <workItem from="1577760862699" duration="4032000" />
+      <workItem from="1578622749310" duration="53000" />
+      <workItem from="1582522637601" duration="690000" />
+      <workItem from="1583894586482" duration="931000" />
     </task>
     <task id="LOCAL-00001" summary="项目重构 1.0.0">
       <created>1572182652861</created>
@@ -246,7 +244,21 @@
       <option name="project" value="LOCAL" />
       <updated>1572240727371</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="打包提供单文件，供页面直接引入使用">
+      <created>1577764574724</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1577764574724</updated>
+    </task>
+    <task id="LOCAL-00018" summary="修复地区键名清洗会导致的问题">
+      <created>1583895502445</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1583895502445</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,28 +281,46 @@
     <MESSAGE value="正则表达式Reg对象通过Utils暴露 1.0.4" />
     <MESSAGE value="修复ParseArea没有解析成功就不返回数据的问题" />
     <MESSAGE value="修复getTargetAreaListByCode值可能为undefined的错误" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复getTargetAreaListByCode值可能为undefined的错误" />
+    <MESSAGE value="打包提供单文件，供页面直接引入使用" />
+    <MESSAGE value="修复地区键名清洗会导致的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复地区键名清洗会导致的问题" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="917" y="157" key="CommitChangelistDialog2" timestamp="1583895501333">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="917" y="157" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1583895501333" />
+    <state x="184" y="86" key="DiffContextDialog" timestamp="1583895402172">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583895402172" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1576735451658">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1576735451658" />
-    <state width="1877" height="404" key="GridCell.Tab.0.bottom" timestamp="1577764132685">
+    <state width="1877" height="316" key="GridCell.Tab.0.bottom" timestamp="1583895535004">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="404" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577764132685" />
-    <state width="1877" height="404" key="GridCell.Tab.0.center" timestamp="1577764132685">
+    <state width="1877" height="316" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583895535004" />
+    <state width="1877" height="316" key="GridCell.Tab.0.center" timestamp="1583895535004">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="404" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577764132685" />
-    <state width="1877" height="404" key="GridCell.Tab.0.left" timestamp="1577764132684">
+    <state width="1877" height="316" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583895535004" />
+    <state width="1877" height="316" key="GridCell.Tab.0.left" timestamp="1583895535004">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="404" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577764132684" />
-    <state width="1877" height="404" key="GridCell.Tab.0.right" timestamp="1577764132685">
+    <state width="1877" height="316" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583895535004" />
+    <state width="1877" height="316" key="GridCell.Tab.0.right" timestamp="1583895535004">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="404" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577764132685" />
+    <state width="1877" height="316" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583895535004" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1577764615920">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1577764615920" />
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578622768213">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578622768213" />
   </component>
 </project>

@@ -59,7 +59,8 @@ var ParseArea = function () {
         if (area === '雨花台区') area = '雨花区';
         if (area.length > 2) {
           ParseArea.AreaShort[_code2] = AreaKeys.reduce(function (v, key) {
-            return v.replace(key, '');
+            if (v.indexOf(key) > 0) v = v.replace(key, '');
+            return v;
           }, area);
         }
       }

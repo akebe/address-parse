@@ -214,6 +214,12 @@ class ParseArea {
    */
   static parse_area_by_city(address, result) {
     const areaList = Utils.getTargetAreaListByCode('area', result.code);
+    const _result = {
+      area: '',
+      code: '',
+      index: -1,
+      address: '',
+    };
     for (let area of areaList) {
       let index = address.indexOf(area.name);
       let shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
@@ -221,20 +227,25 @@ class ParseArea {
       if (shortArea) {
         index = address.indexOf(shortArea);
       }
-      if (index > -1 && index < 3) {
-        result.area = area.name;
-        result.code = area.code;
-        address = address.substr(index + areaLength);
+      if (index > -1 && (_result.index === -1 || _result.index > index)) {
+        _result.area = area.name;
+        _result.code = area.code;
+        _result.index = index;
+        _result.address = address.substr(index + areaLength);
         //如果是用短名匹配的 要替换市关键字
         if (shortArea) {
           for (let key of AreaKeys) {
-            if (address.indexOf(key) === 0) {
-              address = address.substr(key.length);
+            if (_result.address.indexOf(key) === 0) {
+              _result.address = _result.address.substr(key.length);
             }
           }
         }
-        break;
       }
+    }
+    if (_result.index > -1) {
+      result.area = _result.area;
+      result.code = _result.code;
+      address = _result.address;
     }
     return address;
   }

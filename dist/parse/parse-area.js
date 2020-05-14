@@ -303,6 +303,12 @@ var ParseArea = function () {
     key: 'parse_area_by_city',
     value: function parse_area_by_city(address, result) {
       var areaList = _utils2.default.getTargetAreaListByCode('area', result.code);
+      var _result = {
+        area: '',
+        code: '',
+        index: -1,
+        address: ''
+      };
       var _iteratorNormalCompletion4 = true;
       var _didIteratorError4 = false;
       var _iteratorError4 = undefined;
@@ -317,10 +323,11 @@ var ParseArea = function () {
           if (shortArea) {
             index = address.indexOf(shortArea);
           }
-          if (index > -1 && index < 3) {
-            result.area = area.name;
-            result.code = area.code;
-            address = address.substr(index + areaLength);
+          if (index > -1 && (_result.index === -1 || _result.index > index)) {
+            _result.area = area.name;
+            _result.code = area.code;
+            _result.index = index;
+            _result.address = address.substr(index + areaLength);
             //如果是用短名匹配的 要替换市关键字
             if (shortArea) {
               var _iteratorNormalCompletion5 = true;
@@ -331,8 +338,8 @@ var ParseArea = function () {
                 for (var _iterator5 = AreaKeys[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
                   var key = _step5.value;
 
-                  if (address.indexOf(key) === 0) {
-                    address = address.substr(key.length);
+                  if (_result.address.indexOf(key) === 0) {
+                    _result.address = _result.address.substr(key.length);
                   }
                 }
               } catch (err) {
@@ -350,7 +357,6 @@ var ParseArea = function () {
                 }
               }
             }
-            break;
           }
         }
       } catch (err) {
@@ -368,6 +374,11 @@ var ParseArea = function () {
         }
       }
 
+      if (_result.index > -1) {
+        result.area = _result.area;
+        result.code = _result.code;
+        address = _result.address;
+      }
       return address;
     }
 

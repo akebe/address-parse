@@ -3,11 +3,55 @@
  * MIT License
  * By www.asseek.com
  */
-import Parse from './parse';
+import Parse, {AREA, Utils} from './parse/index.js';
 
-//const Parse = require('address-parse').default;
+/**
+ * 地址列表解析验证
+ * @param list {Array} [address, [address, resultCode]]
+ * @returns {boolean}
+ */
+function addressParseTest(list = []) {
+  let isSuccess = true;
+  let index = 0;
+  for (const item of list) {
+    index += 1;
+    const address = Array.isArray(item) ? item[0] : item;
+    const code = Array.isArray(item) ? item[1] : '';
+    const [result, ...results] = Parse.parse(address, true);
+    const status = code ? result.code === code : result.__parse;
+    if (!status) {
+      isSuccess = false;
+      console.log('addressParseTest->fail', `${address} [${code}->${result.code}]`, result, results);
+    }
+  }
+  return isSuccess;
+}
 
-// 测试地址 规则更新需要确保这里面的地址可以被正确解析
+/**
+ * 把所有省市区组为测试数组
+ */
+function getAllAreaTestList() {
+  const cityTestList = [];
+  const areaTestList = [];
+  const province_list = AREA.province_list;
+  for (const provinceCode in province_list) {
+    const province = province_list[provinceCode];
+    const city_list = Utils.getTargetAreaListByCode('city', provinceCode);
+    for (const city of city_list) {
+      cityTestList.push([`${province}${city.name}`, city.code]);
+      const area_list = Utils.getTargetAreaListByCode('area', city.code);
+      for (const area of area_list) {
+        areaTestList.push([`${province}${city.name}${area.name}`, area.code]);
+      }
+
+    }
+  }
+  return {
+    cityTestList,
+    areaTestList,
+  };
+}
+
 const list = [
   ['福建省福州市福清市石竹街道义明综合楼3F，15000000000，asseek', '350181'],
   ['福建省福清市石竹街道义明综合楼3F，15000000000，asseek', '350181'],
@@ -31,23 +75,30 @@ const list = [
   ['四川省阆中市', '511381'],
   ['北京市市辖区东城区嘿嘿 嘿嘿 18031491271', '110101'],
   ['福建省福州市福清市台江公寓', '350181'],
+  ['山东省青岛市平度市南村镇亭兰  张13668888888', '370283'],
 ];
 
-let index = 0;
-let isSuccess = true;
-console.time('解析耗时');
-for (let v of list) {
-  index += 1;
-  let address = Array.isArray(v) ? v[0] : v;
-  let code = Array.isArray(v) ? v[1] : '';
-  //let [result, ...results] = Parse.parse(address, true);
-  let [result, ...results] = Parse.parse(address);
-  let status = code ? result.code === code : result.__parse;
-  if (!status) isSuccess = false;
-  //console.log(index, code ? result.code === code : !!result.area, result, results);
-  console.log(index, code ? result.code === code : result.__parse, result);
-  //console.log(index, code ? result.code === code : !!result.area);
-}
 
-console.timeEnd('解析耗时');
-console.log(`解析结果: ${isSuccess ? '通过' : '失败'}`);
+console.time('测试地址解析耗时');
+const result1 = addressParseTest(list);
+console.timeEnd('测试地址解析耗时');
+console.log(`测试地址解析结果 共 ${list.length} 条`, result1 ? '通过' : '失败');
+
+const {areaTestList, cityTestList} = getAllAreaTestList();
+
+console.time('全国city测试解析耗时');
+const result2 = addressParseTest(cityTestList);
+console.timeEnd('全国city测试解析耗时');
+console.log(`全国city测试解析结果 共 ${cityTestList.length} 条`, result2 ? '通过' : '失败');
+
+console.time('全国area测试解析耗时');
+const result3 = addressParseTest(areaTestList);
+console.timeEnd('全国area测试解析耗时');
+console.log(`全国area测试解析结果 共 ${areaTestList.length} 条`, result3 ? '通过' : '失败');
+
+
+//const test = [['新疆维吾尔自治区和田地区和田县', '653221']]
+//addressParseTest(test);
+
+
+

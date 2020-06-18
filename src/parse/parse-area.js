@@ -39,18 +39,18 @@ class ParseArea {
   static AreaShort = {};
 
   static init() {
-    for (let code in AREA.province_list) {
-      let province = AREA.province_list[code];
+    for (const code in AREA.province_list) {
+      const province = AREA.province_list[code];
       ParseArea.ProvinceShort[code] = ProvinceKeys.reduce((v, key) => v.replace(key, ''), province);
     }
 
-    for (let code in AREA.city_list) {
-      let city = AREA.city_list[code];
+    for (const code in AREA.city_list) {
+      const city = AREA.city_list[code];
       if (city.length > 2) {
         ParseArea.CityShort[code] = CityKeys.reduce((v, key) => v.replace(key, ''), city);
       }
     }
-    for (let code in AREA.area_list) {
+    for (const code in AREA.area_list) {
       let area = AREA.area_list[code];
       if (area === '雨花台区') area = '雨花区';
       if (area.length > 2) {
@@ -96,7 +96,9 @@ class ParseArea {
     this.results.sort((a, b) =>
       a.__parse && !b.__parse ? -1 :
         !a.__parse && b.__parse ? 1 :
-          a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0,
+          a.__parse && a.__type === 'parseByProvince' ? -1 :
+            b.__parse && b.__type === 'parseByProvince' ? 1 :
+              a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0,
     );
 
     return this.results;
@@ -119,11 +121,11 @@ class ParseArea {
       __parse: false,
     };
     let address = addressBase;
-    for (let code in province_list) {
+    for (const code in province_list) {
       const province = province_list[code];
       let index = address.indexOf(province);
-      let shortProvince = index > -1 ? '' : ParseArea.ProvinceShort[code];
-      let provinceLength = shortProvince ? shortProvince.length : province.length;
+      const shortProvince = index > -1 ? '' : ParseArea.ProvinceShort[code];
+      const provinceLength = shortProvince ? shortProvince.length : province.length;
       if (shortProvince) {
         index = address.indexOf(shortProvince);
       }
@@ -177,20 +179,29 @@ class ParseArea {
    */
   static parse_city_by_province(address, result) {
     const cityList = Utils.getTargetAreaListByCode('city', result.code);
-    for (let city of cityList) {
+    const _result = {
+      city: '',
+      code: '',
+      index: -1,
+      address: '',
+      isShort: false,
+    };
+    for (const city of cityList) {
       let index = address.indexOf(city.name);
-      let shortCity = index > -1 ? '' : ParseArea.CityShort[city.code];
-      let cityLength = shortCity ? shortCity.length : city.name.length;
+      const shortCity = index > -1 ? '' : ParseArea.CityShort[city.code];
+      const cityLength = shortCity ? shortCity.length : city.name.length;
       if (shortCity) {
         index = address.indexOf(shortCity);
       }
-      if (index > -1 && index < 3) {
-        result.city = city.name;
-        result.code = city.code;
-        address = address.substr(index + cityLength);
+      if (index > -1 && (_result.index === -1 || _result.index > index || (!shortCity && _result.isShort))) {
+        _result.city = city.name;
+        _result.code = city.code;
+        _result.index = index;
+        _result.address = address.substr(index + cityLength);
+        _result.isShort = !!shortCity;
         //如果是用短名匹配的 要替换市关键字
         if (shortCity) {
-          for (let key of CityKeys) {
+          for (const key of CityKeys) {
             if (address.indexOf(key) === 0) {
               //排除几个会导致异常的解析
               if (key !== '市' && !['市北区', '市南区', '市中区', '市辖区'].some(v => address.indexOf(v) === 0)) {
@@ -199,9 +210,28 @@ class ParseArea {
             }
           }
         }
-        address = ParseArea.parse_area_by_city(address, result);
-        break;
       }
+      if (index > -1 && index < 3) {
+        result.city = city.name;
+        result.code = city.code;
+        _result.address = address.substr(index + cityLength);
+        //如果是用短名匹配的 要替换市关键字
+        if (shortCity) {
+          for (const key of CityKeys) {
+            if (_result.address.indexOf(key) === 0) {
+              //排除几个会导致异常的解析
+              if (key !== '市' && !['市北区', '市南区', '市中区', '市辖区'].some(v => _result.address.indexOf(v) === 0)) {
+                _result.address = _result.address.substr(key.length);
+              }
+            }
+          }
+        }
+      }
+    }
+    if (_result.index > -1) {
+      result.city = _result.city;
+      result.code = _result.code;
+      address = ParseArea.parse_area_by_city(_result.address, result);
     }
     return address;
   }
@@ -219,19 +249,21 @@ class ParseArea {
       code: '',
       index: -1,
       address: '',
+      isShort: false,
     };
-    for (let area of areaList) {
+    for (const area of areaList) {
       let index = address.indexOf(area.name);
-      let shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
-      let areaLength = shortArea ? shortArea.length : area.name.length;
+      const shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
+      const areaLength = shortArea ? shortArea.length : area.name.length;
       if (shortArea) {
         index = address.indexOf(shortArea);
       }
-      if (index > -1 && (_result.index === -1 || _result.index > index)) {
+      if (index > -1 && (_result.index === -1 || _result.index > index || (!shortArea && _result.isShort))) {
         _result.area = area.name;
         _result.code = area.code;
         _result.index = index;
         _result.address = address.substr(index + areaLength);
+        _result.isShort = !!shortArea;
         //如果是用短名匹配的 要替换市关键字
         if (shortArea) {
           for (let key of AreaKeys) {
@@ -255,10 +287,10 @@ class ParseArea {
    */
   static parse_area_by_province(address, result) {
     const areaList = Utils.getTargetAreaListByCode('area', result.code);
-    for (let area of areaList) {
+    for (const area of areaList) {
       let index = address.indexOf(area.name);
-      let shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
-      let areaLength = shortArea ? shortArea.length : area.name.length;
+      const shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
+      const areaLength = shortArea ? shortArea.length : area.name.length;
       if (shortArea) {
         index = address.indexOf(shortArea);
       }
@@ -270,7 +302,7 @@ class ParseArea {
         address = address.substr(index + areaLength);
         //如果是用短名匹配的 要替换地区关键字
         if (shortArea) {
-          for (let key of AreaKeys) {
+          for (const key of AreaKeys) {
             if (address.indexOf(key) === 0) {
               address = address.substr(key.length);
             }
@@ -301,12 +333,12 @@ class ParseArea {
       __parse: false,
     };
     let address = addressBase;
-    for (let code in city_list) {
+    for (const code in city_list) {
       const city = city_list[code];
       if (city.length < 2) break;
       let index = address.indexOf(city);
-      let shortCity = index > -1 ? '' : ParseArea.CityShort[code];
-      let cityLength = shortCity ? shortCity.length : city.length;
+      const shortCity = index > -1 ? '' : ParseArea.CityShort[code];
+      const cityLength = shortCity ? shortCity.length : city.length;
       if (shortCity) {
         index = address.indexOf(shortCity);
       }
@@ -374,12 +406,12 @@ class ParseArea {
       __parse: false,
     };
     let address = addressBase;
-    for (let code in area_list) {
+    for (const code in area_list) {
       const area = area_list[code];
       if (area.length < 2) break;
       let index = address.indexOf(area);
-      let shortArea = index > -1 ? '' : ParseArea.AreaShort[code];
-      let areaLength = shortArea ? shortArea.length : area.length;
+      const shortArea = index > -1 ? '' : ParseArea.AreaShort[code];
+      const areaLength = shortArea ? shortArea.length : area.length;
       if (shortArea) {
         index = address.indexOf(shortArea);
       }

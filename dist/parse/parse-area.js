@@ -59,7 +59,7 @@ var ParseArea = function () {
         if (area === '雨花台区') area = '雨花区';
         if (area.length > 2) {
           ParseArea.AreaShort[_code2] = AreaKeys.reduce(function (v, key) {
-            if (v.indexOf(key) > 0) v = v.replace(key, '');
+            if (v.indexOf(key) > 1) v = v.replace(key, '');
             return v;
           }, area);
         }
@@ -74,6 +74,7 @@ var ParseArea = function () {
     if (!ParseArea.isInit) {
       ParseArea.init();
     }
+
     if (address) {
       return this.parse(address);
     }
@@ -110,7 +111,7 @@ var ParseArea = function () {
       }
       // 可信度排序
       this.results.sort(function (a, b) {
-        return a.__parse && !b.__parse ? -1 : !a.__parse && b.__parse ? 1 : a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0;
+        return a.__parse && !b.__parse ? -1 : !a.__parse && b.__parse ? 1 : a.__parse && a.__type === 'parseByProvince' ? -1 : b.__parse && b.__type === 'parseByProvince' ? 1 : a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0;
       });
 
       return this.results;
@@ -218,6 +219,13 @@ var ParseArea = function () {
     key: 'parse_city_by_province',
     value: function parse_city_by_province(address, result) {
       var cityList = _utils2.default.getTargetAreaListByCode('city', result.code);
+      var _result = {
+        city: '',
+        code: '',
+        index: -1,
+        address: '',
+        isShort: false
+      };
       var _iteratorNormalCompletion2 = true;
       var _didIteratorError2 = false;
       var _iteratorError2 = undefined;
@@ -232,10 +240,12 @@ var ParseArea = function () {
           if (shortCity) {
             index = address.indexOf(shortCity);
           }
-          if (index > -1 && index < 3) {
-            result.city = city.name;
-            result.code = city.code;
-            address = address.substr(index + cityLength);
+          if (index > -1 && (_result.index === -1 || _result.index > index || !shortCity && _result.isShort)) {
+            _result.city = city.name;
+            _result.code = city.code;
+            _result.index = index;
+            _result.address = address.substr(index + cityLength);
+            _result.isShort = !!shortCity;
             //如果是用短名匹配的 要替换市关键字
             if (shortCity) {
               var _iteratorNormalCompletion3 = true;
@@ -270,8 +280,45 @@ var ParseArea = function () {
                 }
               }
             }
-            address = ParseArea.parse_area_by_city(address, result);
-            break;
+          }
+          if (index > -1 && index < 3) {
+            result.city = city.name;
+            result.code = city.code;
+            _result.address = address.substr(index + cityLength);
+            //如果是用短名匹配的 要替换市关键字
+            if (shortCity) {
+              var _iteratorNormalCompletion4 = true;
+              var _didIteratorError4 = false;
+              var _iteratorError4 = undefined;
+
+              try {
+                for (var _iterator4 = CityKeys[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                  var _key = _step4.value;
+
+                  if (_result.address.indexOf(_key) === 0) {
+                    //排除几个会导致异常的解析
+                    if (_key !== '市' && !['市北区', '市南区', '市中区', '市辖区'].some(function (v) {
+                      return _result.address.indexOf(v) === 0;
+                    })) {
+                      _result.address = _result.address.substr(_key.length);
+                    }
+                  }
+                }
+              } catch (err) {
+                _didIteratorError4 = true;
+                _iteratorError4 = err;
+              } finally {
+                try {
+                  if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                    _iterator4.return();
+                  }
+                } finally {
+                  if (_didIteratorError4) {
+                    throw _iteratorError4;
+                  }
+                }
+              }
+            }
           }
         }
       } catch (err) {
@@ -289,6 +336,11 @@ var ParseArea = function () {
         }
       }
 
+      if (_result.index > -1) {
+        result.city = _result.city;
+        result.code = _result.code;
+        address = ParseArea.parse_area_by_city(_result.address, result);
+      }
       return address;
     }
 
@@ -307,15 +359,16 @@ var ParseArea = function () {
         area: '',
         code: '',
         index: -1,
-        address: ''
+        address: '',
+        isShort: false
       };
-      var _iteratorNormalCompletion4 = true;
-      var _didIteratorError4 = false;
-      var _iteratorError4 = undefined;
+      var _iteratorNormalCompletion5 = true;
+      var _didIteratorError5 = false;
+      var _iteratorError5 = undefined;
 
       try {
-        for (var _iterator4 = areaList[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-          var area = _step4.value;
+        for (var _iterator5 = areaList[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+          var area = _step5.value;
 
           var index = address.indexOf(area.name);
           var shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
@@ -323,36 +376,37 @@ var ParseArea = function () {
           if (shortArea) {
             index = address.indexOf(shortArea);
           }
-          if (index > -1 && (_result.index === -1 || _result.index > index)) {
+          if (index > -1 && (_result.index === -1 || _result.index > index || !shortArea && _result.isShort)) {
             _result.area = area.name;
             _result.code = area.code;
             _result.index = index;
             _result.address = address.substr(index + areaLength);
+            _result.isShort = !!shortArea;
             //如果是用短名匹配的 要替换市关键字
             if (shortArea) {
-              var _iteratorNormalCompletion5 = true;
-              var _didIteratorError5 = false;
-              var _iteratorError5 = undefined;
+              var _iteratorNormalCompletion6 = true;
+              var _didIteratorError6 = false;
+              var _iteratorError6 = undefined;
 
               try {
-                for (var _iterator5 = AreaKeys[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                  var key = _step5.value;
+                for (var _iterator6 = AreaKeys[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                  var key = _step6.value;
 
                   if (_result.address.indexOf(key) === 0) {
                     _result.address = _result.address.substr(key.length);
                   }
                 }
               } catch (err) {
-                _didIteratorError5 = true;
-                _iteratorError5 = err;
+                _didIteratorError6 = true;
+                _iteratorError6 = err;
               } finally {
                 try {
-                  if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                    _iterator5.return();
+                  if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                    _iterator6.return();
                   }
                 } finally {
-                  if (_didIteratorError5) {
-                    throw _iteratorError5;
+                  if (_didIteratorError6) {
+                    throw _iteratorError6;
                   }
                 }
               }
@@ -360,16 +414,16 @@ var ParseArea = function () {
           }
         }
       } catch (err) {
-        _didIteratorError4 = true;
-        _iteratorError4 = err;
+        _didIteratorError5 = true;
+        _iteratorError5 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion4 && _iterator4.return) {
-            _iterator4.return();
+          if (!_iteratorNormalCompletion5 && _iterator5.return) {
+            _iterator5.return();
           }
         } finally {
-          if (_didIteratorError4) {
-            throw _iteratorError4;
+          if (_didIteratorError5) {
+            throw _iteratorError5;
           }
         }
       }
@@ -390,13 +444,13 @@ var ParseArea = function () {
     key: 'parse_area_by_province',
     value: function parse_area_by_province(address, result) {
       var areaList = _utils2.default.getTargetAreaListByCode('area', result.code);
-      var _iteratorNormalCompletion6 = true;
-      var _didIteratorError6 = false;
-      var _iteratorError6 = undefined;
+      var _iteratorNormalCompletion7 = true;
+      var _didIteratorError7 = false;
+      var _iteratorError7 = undefined;
 
       try {
-        for (var _iterator6 = areaList[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-          var area = _step6.value;
+        for (var _iterator7 = areaList[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+          var area = _step7.value;
 
           var index = address.indexOf(area.name);
           var shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
@@ -415,29 +469,29 @@ var ParseArea = function () {
             address = address.substr(index + areaLength);
             //如果是用短名匹配的 要替换地区关键字
             if (shortArea) {
-              var _iteratorNormalCompletion7 = true;
-              var _didIteratorError7 = false;
-              var _iteratorError7 = undefined;
+              var _iteratorNormalCompletion8 = true;
+              var _didIteratorError8 = false;
+              var _iteratorError8 = undefined;
 
               try {
-                for (var _iterator7 = AreaKeys[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                  var key = _step7.value;
+                for (var _iterator8 = AreaKeys[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+                  var key = _step8.value;
 
                   if (address.indexOf(key) === 0) {
                     address = address.substr(key.length);
                   }
                 }
               } catch (err) {
-                _didIteratorError7 = true;
-                _iteratorError7 = err;
+                _didIteratorError8 = true;
+                _iteratorError8 = err;
               } finally {
                 try {
-                  if (!_iteratorNormalCompletion7 && _iterator7.return) {
-                    _iterator7.return();
+                  if (!_iteratorNormalCompletion8 && _iterator8.return) {
+                    _iterator8.return();
                   }
                 } finally {
-                  if (_didIteratorError7) {
-                    throw _iteratorError7;
+                  if (_didIteratorError8) {
+                    throw _iteratorError8;
                   }
                 }
               }
@@ -446,16 +500,16 @@ var ParseArea = function () {
           }
         }
       } catch (err) {
-        _didIteratorError6 = true;
-        _iteratorError6 = err;
+        _didIteratorError7 = true;
+        _iteratorError7 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion6 && _iterator6.return) {
-            _iterator6.return();
+          if (!_iteratorNormalCompletion7 && _iterator7.return) {
+            _iterator7.return();
           }
         } finally {
-          if (_didIteratorError6) {
-            throw _iteratorError6;
+          if (_didIteratorError7) {
+            throw _iteratorError7;
           }
         }
       }

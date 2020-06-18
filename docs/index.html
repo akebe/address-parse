@@ -19,19 +19,20 @@
 </div>
 <div class="result">
   <div class="result__label">解析结果</div>
-  <div class="result__value"><pre><code id="result"></code></pre>
+  <div class="result__value">
+    <pre><code id="result"></code></pre>
   </div>
 </div>
 <div class="result">
   <div class="result__label">全部结果</div>
-  <div class="result__value"><pre><code id="resultAll"></code></pre>
+  <div class="result__value">
+    <pre><code id="resultAll"></code></pre>
   </div>
 </div>
 <script>
-  console.log(AddressParse)
   document.getElementById('button').addEventListener('click', function () {
     const address = document.getElementById('input').value;
-    const results = AddressParse.parse(address);
+    const results = AddressParse.parse(address, true);
 
     document.getElementById('address').innerHTML = address;
     document.getElementById('result').innerHTML = JSON.stringify(results[0] || {}, null, 2);

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <meta charset="UTF-8">
+  <title>address-parse</title>
+  <script src="js/bundle.js"></script>
+</head>
+<body>
+<h1>address parse 地址解析测试</h1>
+<div class="input">
+  <textarea autocomplete="off" rows="3" placeholder="请输入地址" class="input__inner" id="input"></textarea>
+  <div style="margin-left: 15px">
+    <button class="parse__button" id="button">解析</button>
+  </div>
+</div>
+<div class="result">
+  <div class="result__label">解析地址</div>
+  <div class="result__value" id="address"></div>
+</div>
+<div class="result">
+  <div class="result__label">解析结果</div>
+  <div class="result__value"><pre><code id="result"></code></pre>
+  </div>
+</div>
+<div class="result">
+  <div class="result__label">全部结果</div>
+  <div class="result__value"><pre><code id="resultAll"></code></pre>
+  </div>
+</div>
+<script>
+  console.log(AddressParse)
+  document.getElementById('button').addEventListener('click', function () {
+    const address = document.getElementById('input').value;
+    const results = AddressParse.parse(address);
+
+    document.getElementById('address').innerHTML = address;
+    document.getElementById('result').innerHTML = JSON.stringify(results[0] || {}, null, 2);
+    document.getElementById('resultAll').innerHTML = JSON.stringify(results, null, 2);
+  });
+</script>
+</body>
+<style>
+  * {
+    font-family: Open Sans, Helvetica Neue, Microsoft YaHei, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+  }
+
+  .result {
+    margin-top: 15px;
+    display: flex;
+    width: 700px;
+  }
+
+  .result__label {
+    width: 80px;
+    color: #606266;
+  }
+
+  .result__value {
+    flex: 1;
+    color: #333;
+  }
+
+  .input {
+    flex: 1;
+    display: flex;
+  }
+
+  .input__inner {
+    min-height: 33px;
+    display: block;
+    resize: vertical;
+    padding: 5px 15px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    font-size: inherit;
+    color: #606266;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+    width: 700px;
+  }
+
+  .input__inner:focus, .parse__button:focus {
+    outline: 0;
+    border-color: #409eff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, .2);
+  }
+
+  .parse__button {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-appearance: none;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    -webkit-transition: .1s;
+    transition: .1s;
+    font-weight: 500;
+    padding: 9px 15px;
+    border-radius: 4px;
+    background: #409eff;
+    border: 1px solid #409eff;
+    color: #fff;
+  }
+
+  .parse__button:active {
+    background: #3a8ee6;
+    border-color: #3a8ee6;
+    color: #fff;
+  }
+
+
+  h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  pre {
+    padding: 18px 24px;
+    background-color: #fafafa;
+    border: 1px solid #eaeefb;
+    margin: 0;
+  }
+</style>
+</html>

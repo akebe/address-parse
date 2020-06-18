@@ -3,6 +3,9 @@
 国内地址地区智能解析，无需完整地址也能正确匹配  
 如有识别不准的地址请 [issuse](https://github.com/akebe/address-parse/issues)
 
+可通过这个简单的页面在线测试一下识别精度  
+ [address parse 地址解析测试](https://akebe.github.io/address-parse/)
+
 ### Install
 `npm install address-parse --save`
 

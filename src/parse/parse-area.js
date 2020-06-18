@@ -55,7 +55,7 @@ class ParseArea {
       if (area === '雨花台区') area = '雨花区';
       if (area.length > 2) {
         ParseArea.AreaShort[code] = AreaKeys.reduce((v, key) => {
-          if (v.indexOf(key) > 0) v = v.replace(key, '');
+          if (v.indexOf(key) > 1) v = v.replace(key, '');
           return v;
         }, area);
       }
@@ -66,8 +66,8 @@ class ParseArea {
   constructor(address) {
     if (!ParseArea.isInit) {
       ParseArea.init();
-
     }
+
     if (address) {
       return this.parse(address);
     }

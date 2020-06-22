@@ -44,12 +44,13 @@ class ParseAddress {
       this.parsePhone();
       this.parseZipCode();
       this.address = this.address.replace(/ {2,}/, ' ');
+      const firstName = ParseAddress.parseName({details: this.address});
 
       results = ParseAddress.ParseArea.parse(this.address, parseAll);
 
       for (let result of results) {
         Object.assign(result, this.result);
-        ParseAddress.parseName(result);
+        ParseAddress.parseName(result, {firstName});
       }
       if (!results.length) {
         let result = Object.assign(this.result, {
@@ -121,8 +122,9 @@ class ParseAddress {
    * 提取姓名
    * @param result
    * @param maxLen 字符串占位 比这个数值短才识别为姓名 汉字2位英文1位
+   * @param firstName 最初切分地址识别到的name
    */
-  static parseName(result, maxLen = 11) {
+  static parseName(result, {maxLen = 11, firstName} = {}) {
     if (!result.name) {
       const list = result.details.split(' ');
       const name = {
@@ -130,14 +132,15 @@ class ParseAddress {
         index: -1,
       };
       if (list.length > 1) {
-        list.forEach((v, i) => {
-          if (v && Utils.strLen(v) < maxLen) {
-            if (!name.value || Utils.strLen(name.value) > Utils.strLen(v)) {
-              name.value = v;
-              name.index = i;
-            }
+        let index = 0;
+        for (const v of list) {
+          if (v || Utils.strLen(name.value) > Utils.strLen(v) || firstName && v === firstName) {
+            name.value = v;
+            name.index = index;
+            if (firstName && v === firstName) break;
           }
-        });
+          index += 1;
+        }
       }
       if (name.value) {
         result.name = name.value;
@@ -145,6 +148,7 @@ class ParseAddress {
         result.details = list.join(' ');
       }
     }
+    return result.name;
   }
 }
 

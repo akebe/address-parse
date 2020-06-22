@@ -16,12 +16,21 @@ function addressParseTest(list = []) {
   for (const item of list) {
     index += 1;
     const address = Array.isArray(item) ? item[0] : item;
-    const code = Array.isArray(item) ? item[1] : '';
+    const options = Array.isArray(item) ? item[1] : '';
+    const code = typeof options === 'object' ? options.code : options;
     const [result, ...results] = Parse.parse(address, true);
-    const status = code ? result.code === code : result.__parse;
+    let status = code ? result.code === code : result.__parse;
+    if (typeof options === 'object') {
+      for (const key in options) {
+        if (result[key] !== options[key]) {
+          status = false;
+          break;
+        }
+      }
+    }
     if (!status) {
       isSuccess = false;
-      console.log('addressParseTest->fail', `${address} [${code}->${result.code}]`, result, results);
+      console.log('addressParseTest->fail', `${address} [${code}->${result.code}]`, result, results, options);
     }
   }
   return isSuccess;
@@ -62,20 +71,21 @@ const list = [
   ['李xx 13512222222 恭城 恭城镇拱辰东路08-88号', '450332'],
   ['四川成都高新区天府大道中段530号东方希望天祥广场a座4302号北京万商天勤(成都)律师事务所', '510191'],
   '房pp,18263333333,山东省 德州市 乐陵市 市中街道怡然居小区,253600',
-  '张y,18802222222,黑龙江省 哈尔滨市 道里区 经纬街道经纬七道街,000000',
-  '深圳市龙华新区民治街道办民乐新村。陆xg15822222222',
+  ['张y,18802222222,黑龙江省 哈尔滨市 道里区 经纬街道经纬七道街,000000', {name: '张y'}],
+  ['深圳市龙华新区民治街道办民乐新村。陆xg15822222222', {name: '陆xg'}],
   '张l,15222222222,内蒙古自治区 呼和浩特市 和林格尔县 盛乐经济工业园区内蒙古师范大学盛乐校区十三号楼,011500',
   ['张l,15222222222,和林格尔 盛乐经济工业园区内蒙古师范大学盛乐校区十三号楼,011500', '150123'],
   '上海市徐汇区 复兴中路1237号 5楼WeWork 200010 柚子',
-  ['龙湖区黄山路潮华雅居10栋000房 肖小姐', '440507'],
-  ['西安市雁塔区丈八东路晶城秀府7号楼2单元     李飞', '610113'],
-  ['湖北省安陆市西亚小铺，文元13377777788', '420982'],
-  ['福建宁德福鼎太姥山镇岭后路。 丹', '350982'],
+  ['龙湖区黄山路潮华雅居10栋000房 肖小姐', {code: '440507', name: '肖小姐'}],
+  ['西安市雁塔区丈八东路晶城秀府7号楼2单元     李飞', {code: '610113', name: '李飞'}],
+  ['湖北省安陆市西亚小铺，文元13377777788', {code: '420982', name: '文元'}],
+  ['福建宁德福鼎太姥山镇岭后路。 丹', {code: '350982', name: '丹'}],
   ['南京市雨花区小行路58号名城世家花园', '320114'],
   ['四川省阆中市', '511381'],
-  ['北京市市辖区东城区嘿嘿 嘿嘿 18031491271', '110101'],
+  ['北京市市辖区东城区嘿嘿 嘿嘿 18031491271', {code: '110101', name: '嘿嘿'}],
   ['福建省福州市福清市台江公寓', '350181'],
-  ['山东省青岛市平度市南村镇亭兰  张13668888888', '370283'],
+  ['山东省青岛市平度市南村镇亭兰  张13668888888', {code: '370283', name: '张'}],
+  ['佛山市南海区盐步 穗盐路景裕嘉园1期 13609770999 大旋仔', {name: '大旋仔'}],
 ];
 
 
@@ -95,10 +105,6 @@ console.time('全国area测试解析耗时');
 const result3 = addressParseTest(areaTestList);
 console.timeEnd('全国area测试解析耗时');
 console.log(`全国area测试解析结果 共 ${areaTestList.length} 条`, result3 ? '通过' : '失败');
-
-
-//const test = [['新疆维吾尔自治区和田地区和田县', '653221']]
-//addressParseTest(test);
 
 
 

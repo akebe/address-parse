@@ -25,6 +25,7 @@ const AreaKeys = [
   '仫佬族自治县', '毛南族自治县', '黎族自治县', '羌族自治县', '彝族自治县', '藏族自治县', '纳西族自治县', '裕固族自治县', '哈萨克族自治县',
   '哈尼族自治县', '拉祜族自治县', '佤族自治县',
   '左旗', '右旗', '中旗', '后旗', '联合旗', '自治旗', '旗', '自治县',
+  '街道办事处',
   '区', '县', '市',
 ];
 
@@ -253,11 +254,13 @@ class ParseArea {
     };
     for (const area of areaList) {
       let index = address.indexOf(area.name);
-      const shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
-      const areaLength = shortArea ? shortArea.length : area.name.length;
+      let shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
       if (shortArea) {
-        index = address.indexOf(shortArea);
+        const {index: _index, matchName} = Utils.shortIndexOf(address, shortArea, area.name);
+        index = _index;
+        shortArea = matchName;
       }
+      const areaLength = shortArea ? shortArea.length : area.name.length;
       if (index > -1 && (_result.index === -1 || _result.index > index || (!shortArea && _result.isShort))) {
         _result.area = area.name;
         _result.code = area.code;
@@ -289,11 +292,14 @@ class ParseArea {
     const areaList = Utils.getTargetAreaListByCode('area', result.code);
     for (const area of areaList) {
       let index = address.indexOf(area.name);
-      const shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
-      const areaLength = shortArea ? shortArea.length : area.name.length;
+      let shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
       if (shortArea) {
-        index = address.indexOf(shortArea);
+        const {index: _index, matchName} = Utils.shortIndexOf(address, shortArea, area.name);
+        index = _index;
+        shortArea = matchName;
       }
+      const areaLength = shortArea ? shortArea.length : area.name.length;
+
       if (index > -1 && index < 6) {
         const [city] = Utils.getTargetAreaListByCode('city', area.code, true);
         result.city = city.name;
@@ -410,11 +416,13 @@ class ParseArea {
       const area = area_list[code];
       if (area.length < 2) break;
       let index = address.indexOf(area);
-      const shortArea = index > -1 ? '' : ParseArea.AreaShort[code];
-      const areaLength = shortArea ? shortArea.length : area.length;
+      let shortArea = index > -1 ? '' : ParseArea.AreaShort[code];
       if (shortArea) {
-        index = address.indexOf(shortArea);
+        const {index: _index, matchName} = Utils.shortIndexOf(address, shortArea, area);
+        index = _index;
+        shortArea = matchName;
       }
+      const areaLength = shortArea ? shortArea.length : area.length;
       if (index > -1) {
         const [province, city] = Utils.getTargetAreaListByCode('province', code, true);
         result.province = province.name;

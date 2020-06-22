@@ -185,7 +185,26 @@ const Reg = {
   zipCode: /([0-9]{6})/g,
 };
 
+function shortIndexOf(address, shortName, name) {
+  let index = address.indexOf(shortName);
+  let matchName = shortName;
+  if (index > -1) {
+    for (let i = shortName.length; i <= name.length; i++) {
+      const _name = name.substr(0, i);
+      const _index = address.indexOf(_name);
+      if (_index > -1) {
+        index = _index;
+        matchName = _name;
+      } else {
+        break;
+      }
+    }
+  }
+  return {index, matchName};
+}
+
 const Utils = {
+  shortIndexOf,
   strLen,
   getAreaByCode,
   getAreaByAddress,

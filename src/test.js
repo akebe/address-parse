@@ -86,6 +86,7 @@ const list = [
   ['福建省福州市福清市台江公寓', '350181'],
   ['山东省青岛市平度市南村镇亭兰  张13668888888', {code: '370283', name: '张'}],
   ['佛山市南海区盐步 穗盐路景裕嘉园1期 13609770999 大旋仔', {name: '大旋仔'}],
+  ['广东省 东莞市 东城街道', {details: '', code: '441916'}],
 ];
 
 
@@ -105,6 +106,4 @@ console.time('全国area测试解析耗时');
 const result3 = addressParseTest(areaTestList);
 console.timeEnd('全国area测试解析耗时');
 console.log(`全国area测试解析结果 共 ${areaTestList.length} 条`, result3 ? '通过' : '失败');
-
-
 

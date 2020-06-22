@@ -64,6 +64,7 @@ var ParseAddress = function () {
         this.parsePhone();
         this.parseZipCode();
         this.address = this.address.replace(/ {2,}/, ' ');
+        var firstName = ParseAddress.parseName({ details: this.address });
 
         results = ParseAddress.ParseArea.parse(this.address, parseAll);
 
@@ -76,7 +77,7 @@ var ParseAddress = function () {
             var _result = _step.value;
 
             Object.assign(_result, this.result);
-            ParseAddress.parseName(_result);
+            ParseAddress.parseName(_result, { firstName: firstName });
           }
         } catch (err) {
           _didIteratorError = true;
@@ -196,12 +197,16 @@ var ParseAddress = function () {
      * 提取姓名
      * @param result
      * @param maxLen 字符串占位 比这个数值短才识别为姓名 汉字2位英文1位
+     * @param firstName 最初切分地址识别到的name
      */
 
   }], [{
     key: 'parseName',
     value: function parseName(result) {
-      var maxLen = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 11;
+      var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+          _ref$maxLen = _ref.maxLen,
+          maxLen = _ref$maxLen === undefined ? 11 : _ref$maxLen,
+          firstName = _ref.firstName;
 
       if (!result.name) {
         var list = result.details.split(' ');
@@ -210,14 +215,36 @@ var ParseAddress = function () {
           index: -1
         };
         if (list.length > 1) {
-          list.forEach(function (v, i) {
-            if (v && _utils2.default.strLen(v) < maxLen) {
-              if (!name.value || _utils2.default.strLen(name.value) > _utils2.default.strLen(v)) {
+          var index = 0;
+          var _iteratorNormalCompletion3 = true;
+          var _didIteratorError3 = false;
+          var _iteratorError3 = undefined;
+
+          try {
+            for (var _iterator3 = list[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+              var v = _step3.value;
+
+              if (v || _utils2.default.strLen(name.value) > _utils2.default.strLen(v) || firstName && v === firstName) {
                 name.value = v;
-                name.index = i;
+                name.index = index;
+                if (firstName && v === firstName) break;
+              }
+              index += 1;
+            }
+          } catch (err) {
+            _didIteratorError3 = true;
+            _iteratorError3 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                _iterator3.return();
+              }
+            } finally {
+              if (_didIteratorError3) {
+                throw _iteratorError3;
               }
             }
-          });
+          }
         }
         if (name.value) {
           result.name = name.value;
@@ -225,6 +252,7 @@ var ParseAddress = function () {
           result.details = list.join(' ');
         }
       }
+      return result.name;
     }
   }]);
 

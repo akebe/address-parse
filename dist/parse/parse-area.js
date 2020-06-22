@@ -33,7 +33,7 @@ var ProvinceKeys = ['特别行政区', '古自治区', '维吾尔自治区', '�
 
 var CityKeys = ['布依族苗族自治州', '苗族侗族自治州', '藏族羌族自治州', '哈尼族彝族自治州', '壮族苗族自治州', '傣族景颇族自治州', '蒙古族藏族自治州', '傣族自治州', '白族自治州', '藏族自治州', '彝族自治州', '回族自治州', '蒙古自治州', '朝鲜族自治州', '地区', '哈萨克自治州', '盟', '市'];
 
-var AreaKeys = ['满族自治县', '满族蒙古族自治县', '蒙古族自治县', '朝鲜族自治县', '回族彝族自治县', '彝族回族苗族自治县', '彝族苗族自治县', '土家族苗族自治县', '布依族苗族自治县', '苗族布依族自治县', '彝族傣族自治县', '傣族彝族自治县', '仡佬族苗族自治县', '黎族苗族自治县', '苗族侗族自治县', '哈尼族彝族傣族自治县', '哈尼族彝族自治县', '彝族哈尼族拉祜族自治县', '傣族拉祜族佤族自治县', '傣族佤族自治县', '拉祜族佤族布朗族傣族自治县', '苗族瑶族傣族自治县', '彝族回族自治县', '独龙族怒族自治县', '保安族东乡族撒拉族自治县', '回族土族自治县', '撒拉族自治县', '哈萨克自治县', '塔吉克自治县', '回族自治县', '畲族自治县', '土家族自治县', '布依族自治县', '苗族自治县', '瑶族自治县', '侗族自治县', '水族自治县', '傈僳族自治县', '仫佬族自治县', '毛南族自治县', '黎族自治县', '羌族自治县', '彝族自治县', '藏族自治县', '纳西族自治县', '裕固族自治县', '哈萨克族自治县', '哈尼族自治县', '拉祜族自治县', '佤族自治县', '左旗', '右旗', '中旗', '后旗', '联合旗', '自治旗', '旗', '自治县', '区', '县', '市'];
+var AreaKeys = ['满族自治县', '满族蒙古族自治县', '蒙古族自治县', '朝鲜族自治县', '回族彝族自治县', '彝族回族苗族自治县', '彝族苗族自治县', '土家族苗族自治县', '布依族苗族自治县', '苗族布依族自治县', '彝族傣族自治县', '傣族彝族自治县', '仡佬族苗族自治县', '黎族苗族自治县', '苗族侗族自治县', '哈尼族彝族傣族自治县', '哈尼族彝族自治县', '彝族哈尼族拉祜族自治县', '傣族拉祜族佤族自治县', '傣族佤族自治县', '拉祜族佤族布朗族傣族自治县', '苗族瑶族傣族自治县', '彝族回族自治县', '独龙族怒族自治县', '保安族东乡族撒拉族自治县', '回族土族自治县', '撒拉族自治县', '哈萨克自治县', '塔吉克自治县', '回族自治县', '畲族自治县', '土家族自治县', '布依族自治县', '苗族自治县', '瑶族自治县', '侗族自治县', '水族自治县', '傈僳族自治县', '仫佬族自治县', '毛南族自治县', '黎族自治县', '羌族自治县', '彝族自治县', '藏族自治县', '纳西族自治县', '裕固族自治县', '哈萨克族自治县', '哈尼族自治县', '拉祜族自治县', '佤族自治县', '左旗', '右旗', '中旗', '后旗', '联合旗', '自治旗', '旗', '自治县', '街道办事处', '区', '县', '市'];
 
 var ParseArea = function () {
   _createClass(ParseArea, null, [{
@@ -372,10 +372,15 @@ var ParseArea = function () {
 
           var index = address.indexOf(area.name);
           var shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
-          var areaLength = shortArea ? shortArea.length : area.name.length;
           if (shortArea) {
-            index = address.indexOf(shortArea);
+            var _Utils$shortIndexOf = _utils2.default.shortIndexOf(address, shortArea, area.name),
+                _index = _Utils$shortIndexOf.index,
+                matchName = _Utils$shortIndexOf.matchName;
+
+            index = _index;
+            shortArea = matchName;
           }
+          var areaLength = shortArea ? shortArea.length : area.name.length;
           if (index > -1 && (_result.index === -1 || _result.index > index || !shortArea && _result.isShort)) {
             _result.area = area.name;
             _result.code = area.code;
@@ -454,10 +459,16 @@ var ParseArea = function () {
 
           var index = address.indexOf(area.name);
           var shortArea = index > -1 ? '' : ParseArea.AreaShort[area.code];
-          var areaLength = shortArea ? shortArea.length : area.name.length;
           if (shortArea) {
-            index = address.indexOf(shortArea);
+            var _Utils$shortIndexOf2 = _utils2.default.shortIndexOf(address, shortArea, area.name),
+                _index = _Utils$shortIndexOf2.index,
+                matchName = _Utils$shortIndexOf2.matchName;
+
+            index = _index;
+            shortArea = matchName;
           }
+          var areaLength = shortArea ? shortArea.length : area.name.length;
+
           if (index > -1 && index < 6) {
             var _Utils$getTargetAreaL = _utils2.default.getTargetAreaListByCode('city', area.code, true),
                 _Utils$getTargetAreaL2 = _slicedToArray(_Utils$getTargetAreaL, 1),
@@ -623,10 +634,15 @@ var ParseArea = function () {
         if (area.length < 2) break;
         var index = address.indexOf(area);
         var shortArea = index > -1 ? '' : ParseArea.AreaShort[code];
-        var areaLength = shortArea ? shortArea.length : area.length;
         if (shortArea) {
-          index = address.indexOf(shortArea);
+          var _Utils$shortIndexOf3 = _utils2.default.shortIndexOf(address, shortArea, area),
+              _index = _Utils$shortIndexOf3.index,
+              matchName = _Utils$shortIndexOf3.matchName;
+
+          index = _index;
+          shortArea = matchName;
         }
+        var areaLength = shortArea ? shortArea.length : area.length;
         if (index > -1) {
           var _Utils$getTargetAreaL5 = _utils2.default.getTargetAreaListByCode('province', code, true),
               _Utils$getTargetAreaL6 = _slicedToArray(_Utils$getTargetAreaL5, 2),
@@ -643,22 +659,22 @@ var ParseArea = function () {
               _cityName = '';
           if (leftAddress) {
             _provinceName = province.name;
-            var _index = leftAddress.indexOf(_provinceName);
-            if (_index === -1) {
+            var _index2 = leftAddress.indexOf(_provinceName);
+            if (_index2 === -1) {
               _provinceName = ParseArea.ProvinceShort[province.code];
-              _index = leftAddress.indexOf(_provinceName);
-              if (_index === -1) _provinceName = '';
+              _index2 = leftAddress.indexOf(_provinceName);
+              if (_index2 === -1) _provinceName = '';
             }
             if (_provinceName) {
               leftAddress = leftAddress.replace(new RegExp(_provinceName, 'g'), '');
             }
 
             _cityName = city.name;
-            _index = leftAddress.indexOf(_cityName);
-            if (_index === -1) {
+            _index2 = leftAddress.indexOf(_cityName);
+            if (_index2 === -1) {
               _cityName = ParseArea.CityShort[city.code];
-              _index = leftAddress.indexOf(_cityName);
-              if (_index === -1) _cityName = '';
+              _index2 = leftAddress.indexOf(_cityName);
+              if (_index2 === -1) _cityName = '';
             }
             if (_cityName) {
               leftAddress = leftAddress.replace(new RegExp(_cityName, 'g'), '');

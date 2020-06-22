@@ -203,7 +203,26 @@ var Reg = {
   zipCode: /([0-9]{6})/g
 };
 
+function shortIndexOf(address, shortName, name) {
+  var index = address.indexOf(shortName);
+  var matchName = shortName;
+  if (index > -1) {
+    for (var i = shortName.length; i <= name.length; i++) {
+      var _name = name.substr(0, i);
+      var _index = address.indexOf(_name);
+      if (_index > -1) {
+        index = _index;
+        matchName = _name;
+      } else {
+        break;
+      }
+    }
+  }
+  return { index: index, matchName: matchName };
+}
+
 var Utils = {
+  shortIndexOf: shortIndexOf,
   strLen: strLen,
   getAreaByCode: getAreaByCode,
   getAreaByAddress: getAreaByAddress,

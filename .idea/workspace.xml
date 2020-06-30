@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="修复可能导致错误解析的问题">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="update 1.2.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/area.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/area.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UPDATE.md" beforeDir="false" afterPath="$PROJECT_DIR$/UPDATE.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/parse/parse-area.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/parse-area.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/parse/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/js/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/js/bundle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parse/parse-area.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse/parse-area.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +69,7 @@
       <recent name="D:\github\address-parse" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build-web">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/address-parse/docs/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -96,9 +95,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="npm.build-web" />
         <item itemvalue="npm.build_test" />
-        <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
   </component>
@@ -146,7 +145,10 @@
       <workItem from="1589417607609" duration="307000" />
       <workItem from="1589462080488" duration="3882000" />
       <workItem from="1592486852196" duration="9273000" />
-      <workItem from="1592823288545" duration="5141000" />
+      <workItem from="1592823288545" duration="6099000" />
+      <workItem from="1592880135084" duration="2229000" />
+      <workItem from="1593332194736" duration="3562000" />
+      <workItem from="1593522798804" duration="1676000" />
     </task>
     <task id="LOCAL-00001" summary="项目重构 1.0.0">
       <created>1572182652861</created>
@@ -365,15 +367,27 @@
       <option name="project" value="LOCAL" />
       <updated>1592828387092</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="update 1.2.0">
+      <created>1592828485350</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1592828485350</updated>
+    </task>
+    <task id="LOCAL-00033" summary="支持url参数解析，支持parseAll设置">
+      <created>1592881356086</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1592881356086</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="更新文档使用说明" />
-    <MESSAGE value="添加repository homepage" />
     <MESSAGE value="license" />
     <MESSAGE value="issues" />
     <MESSAGE value="包内添加npm依赖" />
@@ -397,37 +411,43 @@
     <MESSAGE value="update 1.1.4" />
     <MESSAGE value="地区数据更新" />
     <MESSAGE value="添加Utils.shortIndexOf改善地区短名截取效果" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加Utils.shortIndexOf改善地区短名截取效果" />
+    <MESSAGE value="update 1.2.0" />
+    <MESSAGE value="支持url参数解析，支持parseAll设置" />
+    <option name="LAST_COMMIT_MESSAGE" value="支持url参数解析，支持parseAll设置" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="917" y="157" key="CommitChangelistDialog2" timestamp="1592828465620">
+    <state x="917" y="157" key="CommitChangelistDialog2" timestamp="1593524680230">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="917" y="157" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1592828465620" />
-    <state x="184" y="86" key="DiffContextDialog" timestamp="1592828458291">
+    <state x="917" y="157" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1593524680230" />
+    <state x="184" y="86" key="DiffContextDialog" timestamp="1593524656512">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1592828458291" />
-    <state width="1877" height="431" key="GridCell.Tab.0.bottom" timestamp="1592828403847">
+    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593524656512" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1593421004791">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="431" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592828403845" />
-    <state width="1877" height="431" key="GridCell.Tab.0.center" timestamp="1592828403845">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1593421004791" />
+    <state width="1877" height="339" key="GridCell.Tab.0.bottom" timestamp="1593524543512">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="431" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592828403845" />
-    <state width="1877" height="431" key="GridCell.Tab.0.left" timestamp="1592828403845">
+    <state width="1877" height="339" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1593524543512" />
+    <state width="1877" height="339" key="GridCell.Tab.0.center" timestamp="1593524543512">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="431" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592828403845" />
-    <state width="1877" height="431" key="GridCell.Tab.0.right" timestamp="1592828403845">
+    <state width="1877" height="339" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1593524543512" />
+    <state width="1877" height="339" key="GridCell.Tab.0.left" timestamp="1593524543512">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="431" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592828403845" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1592825307720">
+    <state width="1877" height="339" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1593524543512" />
+    <state width="1877" height="339" key="GridCell.Tab.0.right" timestamp="1593524543512">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1592825307720" />
+    <state width="1877" height="339" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1593524543512" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1592881364783">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1592881364783" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1592491600521">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -87,6 +87,8 @@ const list = [
   ['山东省青岛市平度市南村镇亭兰  张13668888888', {code: '370283', name: '张'}],
   ['佛山市南海区盐步 穗盐路景裕嘉园1期 13609770999 大旋仔', {name: '大旋仔'}],
   ['广东省 东莞市 东城街道', {details: '', code: '441916'}],
+  ['山东省青岛平度市南村镇', '370283'],
+  ['重庆市县城口县', '500229']
 ];
 
 
@@ -107,3 +109,8 @@ const result3 = addressParseTest(areaTestList);
 console.timeEnd('全国area测试解析耗时');
 console.log(`全国area测试解析结果 共 ${areaTestList.length} 条`, result3 ? '通过' : '失败');
 
+
+/**
+ * TODO 山东省青岛平度市南村镇 这个地址的parseByArea有问题，现不影响正确解析结果，留待解决
+ * 与 https://github.com/akebe/address-parse/issues/14 核心原因一致，靠前的地区先被匹配成功了跳出循环
+ */

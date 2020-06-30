@@ -93,13 +93,35 @@ class ParseArea {
         this.results.unshift(...ParseArea.parseByArea(address));
       }
     }
+
+    // __parse结果改为数值类型
+    if (this.results.length > 1) {
+      for (const result of this.results) {
+        let _address = address;
+        result.__parse = +result.__parse;
+        if (result.__parse && result.province && _address.includes(result.province)) {
+          _address = _address.replace(result.province, '');
+          result.__parse += 1;
+          if (result.city && _address.includes(result.city)) {
+            _address = _address.replace(result.city, '');
+            result.__parse += 1;
+            if (result.area && _address.includes(result.area)) {
+              result.__parse += 1;
+            }
+          }
+        }
+      }
+    }
+
     // 可信度排序
     this.results.sort((a, b) =>
       a.__parse && !b.__parse ? -1 :
         !a.__parse && b.__parse ? 1 :
-          a.__parse && a.__type === 'parseByProvince' ? -1 :
-            b.__parse && b.__type === 'parseByProvince' ? 1 :
-              a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0,
+          a.__parse && b.__parse && a.__parse > b.__parse ? -1 :
+            a.__parse && b.__parse && a.__parse < b.__parse ? 1 :
+              a.__parse && a.__type === 'parseByProvince' ? -1 :
+                b.__parse && b.__type === 'parseByProvince' ? 1 :
+                  a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0,
     );
 
     return this.results;

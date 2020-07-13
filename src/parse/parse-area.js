@@ -26,7 +26,7 @@ const AreaKeys = [
   '哈尼族自治县', '拉祜族自治县', '佤族自治县',
   '左旗', '右旗', '中旗', '后旗', '联合旗', '自治旗', '旗', '自治县',
   '街道办事处',
-  '区', '县', '市',
+  '新区', '区', '县', '市',
 ];
 
 class ParseArea {
@@ -54,7 +54,7 @@ class ParseArea {
     for (const code in AREA.area_list) {
       let area = AREA.area_list[code];
       if (area === '雨花台区') area = '雨花区';
-      if (area.length > 2) {
+      if (area.length > 2 && area !== '高新区') {
         ParseArea.AreaShort[code] = AreaKeys.reduce((v, key) => {
           if (v.indexOf(key) > 1) v = v.replace(key, '');
           return v;

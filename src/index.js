@@ -4,7 +4,9 @@ import Parse, {
   Utils,
 } from './parse';
 
-window.AddressParse = Parse;
+if (window) {
+  window.AddressParse = Parse;
+}
 
 Parse.Utils = Utils;
 Parse.AREA = AREA;

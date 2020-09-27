@@ -593,7 +593,7 @@ var ParseArea = function () {
       var address = addressBase;
       for (var code in city_list) {
         var city = city_list[code];
-        if (city.length < 2) break;
+        if (city.length < 2) continue;
         var index = address.indexOf(city);
         var shortCity = index > -1 ? '' : ParseArea.CityShort[code];
         var cityLength = shortCity ? shortCity.length : city.length;
@@ -672,7 +672,7 @@ var ParseArea = function () {
       var address = addressBase;
       for (var code in area_list) {
         var area = area_list[code];
-        if (area.length < 2) break;
+        if (area.length < 2) continue;
         var index = address.indexOf(area);
         var shortArea = index > -1 ? '' : ParseArea.AreaShort[code];
         if (shortArea) {

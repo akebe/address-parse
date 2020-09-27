@@ -363,7 +363,7 @@ class ParseArea {
     let address = addressBase;
     for (const code in city_list) {
       const city = city_list[code];
-      if (city.length < 2) break;
+      if (city.length < 2) continue;
       let index = address.indexOf(city);
       const shortCity = index > -1 ? '' : ParseArea.CityShort[code];
       const cityLength = shortCity ? shortCity.length : city.length;
@@ -436,7 +436,7 @@ class ParseArea {
     let address = addressBase;
     for (const code in area_list) {
       const area = area_list[code];
-      if (area.length < 2) break;
+      if (area.length < 2) continue;
       let index = address.indexOf(area);
       let shortArea = index > -1 ? '' : ParseArea.AreaShort[code];
       if (shortArea) {

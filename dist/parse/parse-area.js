@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * address-parse
@@ -44,6 +44,7 @@ var ParseArea = function () {
         ParseArea.ProvinceShort[code] = ProvinceKeys.reduce(function (v, key) {
           return v.replace(key, '');
         }, province);
+        ParseArea.ProvinceShortList.push(ParseArea.ProvinceShort[code]);
       }
 
       for (var _code in _area2.default.city_list) {
@@ -126,7 +127,9 @@ var ParseArea = function () {
               _address = _address.replace(result.province, '');
               result.__parse += 1;
               if (result.city && _address.includes(result.city)) {
-                _address = _address.replace(result.city, '');
+                if (result.city !== '县' || !_address.indexOf(result.city)) {
+                  _address = _address.replace(result.city, '');
+                }
                 result.__parse += 1;
                 if (result.area && _address.includes(result.area)) {
                   result.__parse += 1;
@@ -232,8 +235,26 @@ var ParseArea = function () {
             __address = ParseArea.parse_area_by_province(address, result);
           }
           if (result.city) {
-            address = __address;
             result.__parse = true;
+            address = __address;
+            // 因为详细地址内包含其他地区数据导致解析失败的解决方案
+            // 为避免边界问题 首字含省份名才触发，如果是伊宁市上海城徐汇苑不触发
+            if (index > 4 && ParseArea.ProvinceShortList.some(function (shortProvince) {
+              return result.name.indexOf(shortProvince) === 0;
+            })) {
+              var _ParseArea$parseByPro = ParseArea.parseByProvince(result.name),
+                  _ParseArea$parseByPro2 = _slicedToArray(_ParseArea$parseByPro, 1),
+                  _result = _ParseArea$parseByPro2[0];
+
+              if (_result.__parse) {
+                Object.assign(result, _result);
+                address = addressBase.substr(index).trim();
+                if (!result.area) {
+                  address = ParseArea.parse_area_by_city(address, result);
+                }
+                result.__parse = 3;
+              }
+            }
             break;
           } else {
             //如果没有识别到地区 缓存本次结果，并重置数据
@@ -752,6 +773,7 @@ var ParseArea = function () {
 }();
 
 ParseArea.isInit = false;
+ParseArea.ProvinceShortList = [];
 ParseArea.ProvinceShort = {};
 ParseArea.CityShort = {};
 ParseArea.AreaShort = {};

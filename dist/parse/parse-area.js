@@ -240,7 +240,7 @@ var ParseArea = function () {
             // 因为详细地址内包含其他地区数据导致解析失败的解决方案
             // 为避免边界问题 首字含省份名才触发，如果是伊宁市上海城徐汇苑不触发
             if (index > 4 && ParseArea.ProvinceShortList.some(function (shortProvince) {
-              return result.name.indexOf(shortProvince) === 0;
+              return result.name.includes(shortProvince);
             })) {
               var _ParseArea$parseByPro = ParseArea.parseByProvince(result.name),
                   _ParseArea$parseByPro2 = _slicedToArray(_ParseArea$parseByPro, 1),

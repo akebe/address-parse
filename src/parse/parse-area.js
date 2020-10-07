@@ -33,6 +33,8 @@ class ParseArea {
 
   static isInit = false;
 
+  static ProvinceShortList = [];
+
   static ProvinceShort = {};
 
   static CityShort = {};
@@ -43,6 +45,7 @@ class ParseArea {
     for (const code in AREA.province_list) {
       const province = AREA.province_list[code];
       ParseArea.ProvinceShort[code] = ProvinceKeys.reduce((v, key) => v.replace(key, ''), province);
+      ParseArea.ProvinceShortList.push(ParseArea.ProvinceShort[code]);
     }
 
     for (const code in AREA.city_list) {
@@ -103,7 +106,9 @@ class ParseArea {
           _address = _address.replace(result.province, '');
           result.__parse += 1;
           if (result.city && _address.includes(result.city)) {
-            _address = _address.replace(result.city, '');
+            if (result.city !== '县' || !_address.indexOf(result.city)) {
+              _address = _address.replace(result.city, '');
+            }
             result.__parse += 1;
             if (result.area && _address.includes(result.area)) {
               result.__parse += 1;
@@ -177,8 +182,21 @@ class ParseArea {
           __address = ParseArea.parse_area_by_province(address, result);
         }
         if (result.city) {
-          address = __address;
           result.__parse = true;
+          address = __address;
+          // 因为详细地址内包含其他地区数据导致解析失败的解决方案
+          // 为避免边界问题 首字含省份名才触发，如果是伊宁市上海城徐汇苑不触发
+          if (index > 4 && ParseArea.ProvinceShortList.some(shortProvince => result.name.indexOf(shortProvince) === 0)) {
+            const [_result] = ParseArea.parseByProvince(result.name);
+            if (_result.__parse) {
+              Object.assign(result, _result);
+              address = addressBase.substr(index).trim();
+              if (!result.area) {
+                address = ParseArea.parse_area_by_city(address, result);
+              }
+              result.__parse = 3;
+            }
+          }
           break;
         } else {
           //如果没有识别到地区 缓存本次结果，并重置数据

@@ -91,8 +91,9 @@ const list = [
   ['重庆市县城口县', '500229'],
   ['上海 上海市 浦东区 asd，大liu， ', '310115'],
   ['吐鲁番市吐鲁番宾馆', '650400'],
+  ['新疆伊宁市上海城徐汇苑23号楼5单元401室', '654002'],
+  ['重庆忠县', '500233'],
 ];
-
 
 console.time('测试地址解析耗时');
 const result1 = addressParseTest(list);
@@ -110,7 +111,6 @@ console.time('全国area测试解析耗时');
 const result3 = addressParseTest(areaTestList);
 console.timeEnd('全国area测试解析耗时');
 console.log(`全国area测试解析结果 共 ${areaTestList.length} 条`, result3 ? '通过' : '失败');
-
 
 /**
  * TODO 山东省青岛平度市南村镇 这个地址的parseByArea有问题，现不影响正确解析结果，留待解决

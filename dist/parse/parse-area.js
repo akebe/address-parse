@@ -58,6 +58,7 @@ var ParseArea = function () {
       for (var _code2 in _area2.default.area_list) {
         var area = _area2.default.area_list[_code2];
         if (area === '雨花台区') area = '雨花区';
+        if (area === '神农架林区') area = '神农架';
         if (area.length > 2 && area !== '高新区') {
           ParseArea.AreaShort[_code2] = AreaKeys.reduce(function (v, key) {
             if (v.indexOf(key) > 1) v = v.replace(key, '');
@@ -238,7 +239,7 @@ var ParseArea = function () {
             result.__parse = true;
             address = __address;
             // 因为详细地址内包含其他地区数据导致解析失败的解决方案
-            // 为避免边界问题 首字含省份名才触发，如果是伊宁市上海城徐汇苑不触发
+            // 为避免边界问题 含省份名才触发，如果是伊宁市上海城徐汇苑不触发
             if (index > 4 && ParseArea.ProvinceShortList.some(function (shortProvince) {
               return result.name.includes(shortProvince);
             })) {

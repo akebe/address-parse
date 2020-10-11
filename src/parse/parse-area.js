@@ -57,6 +57,7 @@ class ParseArea {
     for (const code in AREA.area_list) {
       let area = AREA.area_list[code];
       if (area === '雨花台区') area = '雨花区';
+      if (area === '神农架林区') area = '神农架';
       if (area.length > 2 && area !== '高新区') {
         ParseArea.AreaShort[code] = AreaKeys.reduce((v, key) => {
           if (v.indexOf(key) > 1) v = v.replace(key, '');

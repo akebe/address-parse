@@ -746,8 +746,23 @@ var ParseArea = function () {
               result.name = leftAddress;
             }
           }
-          address = address.substr(index + areaLength);
 
+          // 出现同省地区匹配错误处理，广东省惠来县惠城镇 如不经处理匹配到 广东省惠州市惠城区
+          if (_provinceName && !_cityName) {
+            var _ParseArea$parseByAre = ParseArea.parseByArea(address.substr(0, index)),
+                _ParseArea$parseByAre2 = _slicedToArray(_ParseArea$parseByAre, 1),
+                _result = _ParseArea$parseByAre2[0];
+
+            if (_result && _result.__parse) {
+              Object.assign(result, _result);
+              address = address.substr(index).trim();
+              address = ParseArea.parse_area_by_city(address, result);
+              result.__parse = 2;
+              break;
+            }
+          }
+
+          address = address.substr(index + areaLength);
           if (_provinceName || _cityName) {
             result.__parse = true;
             break;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="update 1.2.6">
+    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="update 1.2.8">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/bundle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/parse/parse-area.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/parse-area.js" afterDir="false" />
@@ -64,14 +64,14 @@
     <property name="settings.editor.selected.configurable" value="sshConsole" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\github\address-parse\docs\js" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\github\address-parse\docs\js" />
       <recent name="D:\github\address-parse\dist" />
       <recent name="D:\github\address-parse\src" />
       <recent name="D:\github\address-parse" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\github\address-parse\docs\js" />
     </key>
   </component>
   <component name="RunManager" selected="npm.build-web">
@@ -172,7 +172,8 @@
       <workItem from="1601185242193" duration="1592000" />
       <workItem from="1601506865485" duration="1798000" />
       <workItem from="1602047870525" duration="6248000" />
-      <workItem from="1602414720862" duration="319000" />
+      <workItem from="1602414720862" duration="1043000" />
+      <workItem from="1603940224304" duration="2811000" />
     </task>
     <task id="LOCAL-00001" summary="项目重构 1.0.0">
       <created>1572182652861</created>
@@ -482,15 +483,27 @@
       <option name="project" value="LOCAL" />
       <updated>1602051856118</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="修复神农架林区短名识别不准问题">
+      <created>1602415076047</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1602415076047</updated>
+    </task>
+    <task id="LOCAL-00046" summary="update 1.2.7">
+      <created>1602415087971</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1602415087971</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="优化parse_area_by_city的解析逻辑" />
-    <MESSAGE value="update 1.1.2" />
     <MESSAGE value="修复可能导致错误解析的问题" />
     <MESSAGE value="修复已知问题，通过全国地址地区顺序测试" />
     <MESSAGE value="添加在线解析测试页" />
@@ -514,13 +527,15 @@
     <MESSAGE value="因为详细地址内包含其他地区数据导致解析失败的解决方案,优化排序" />
     <MESSAGE value="update 1.2.5" />
     <MESSAGE value="update 1.2.6" />
-    <option name="LAST_COMMIT_MESSAGE" value="update 1.2.6" />
+    <MESSAGE value="修复神农架林区短名识别不准问题" />
+    <MESSAGE value="update 1.2.7" />
+    <option name="LAST_COMMIT_MESSAGE" value="update 1.2.7" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="917" y="157" key="CommitChangelistDialog2" timestamp="1602415074359">
+    <state x="917" y="157" key="CommitChangelistDialog2" timestamp="1603947550500">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="917" y="157" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602415074359" />
+    <state x="917" y="157" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603947550500" />
     <state x="184" y="86" key="DiffContextDialog" timestamp="1602051836416">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -529,26 +544,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601507449065" />
-    <state width="1877" height="380" key="GridCell.Tab.0.bottom" timestamp="1602414994180">
+    <state width="1877" height="317" key="GridCell.Tab.0.bottom" timestamp="1603942341395">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="380" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602414994180" />
-    <state width="1877" height="380" key="GridCell.Tab.0.center" timestamp="1602414994180">
+    <state width="1877" height="317" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603942341395" />
+    <state width="1877" height="317" key="GridCell.Tab.0.center" timestamp="1603942341394">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="380" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602414994180" />
-    <state width="1877" height="380" key="GridCell.Tab.0.left" timestamp="1602414994180">
+    <state width="1877" height="317" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603942341394" />
+    <state width="1877" height="317" key="GridCell.Tab.0.left" timestamp="1603942341394">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="380" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602414994180" />
-    <state width="1877" height="380" key="GridCell.Tab.0.right" timestamp="1602414994180">
+    <state width="1877" height="317" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603942341394" />
+    <state width="1877" height="317" key="GridCell.Tab.0.right" timestamp="1603942341395">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="380" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1602414994180" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602051860096">
+    <state width="1877" height="317" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603942341395" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602415092171">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602051860096" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602415092171" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/address_parse$index_html.dat" NAME="index.html Coverage Results" MODIFIED="1592493951824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

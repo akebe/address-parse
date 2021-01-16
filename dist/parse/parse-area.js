@@ -756,7 +756,9 @@ var ParseArea = function () {
             if (_result && _result.__parse) {
               Object.assign(result, _result);
               address = address.substr(index).trim();
-              address = ParseArea.parse_area_by_city(address, result);
+              if (!result.area) {
+                address = ParseArea.parse_area_by_city(address, result);
+              }
               result.__parse = 2;
               break;
             }

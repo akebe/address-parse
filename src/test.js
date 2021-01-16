@@ -95,6 +95,7 @@ const list = [
   ['重庆忠县', '500233'],
   ['湖北神农架太阳村10组', '429021'],
   ['广东省惠来县惠城镇南门西路209号', '445224'],
+  ['江苏省靖江市江阴经济开发区靖江园区五星村里面的江阴经济开发区', {details: '江阴经济开发区靖江园区五星村里面的江阴经济开发区'}],
 ];
 
 console.time('测试地址解析耗时');
@@ -113,10 +114,6 @@ console.time('全国area测试解析耗时');
 const result3 = addressParseTest(areaTestList);
 console.timeEnd('全国area测试解析耗时');
 console.log(`全国area测试解析结果 共 ${areaTestList.length} 条`, result3 ? '通过' : '失败');
-
-
-//const res = Parse.parse('广东省惠来县惠城镇南门西路209号', true);
-// console.log(res);
 
 
 /**

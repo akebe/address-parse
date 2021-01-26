@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="update 1.2.8">
+    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="出现同省地区匹配错误处理 update 1.2.8">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/bundle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/parse/parse-area.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/parse-area.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/parse/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/js/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/js/bundle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parse/parse-area.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse/parse-area.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parse/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,7 +173,9 @@
       <workItem from="1601506865485" duration="1798000" />
       <workItem from="1602047870525" duration="6248000" />
       <workItem from="1602414720862" duration="1043000" />
-      <workItem from="1603940224304" duration="2811000" />
+      <workItem from="1603940224304" duration="3451000" />
+      <workItem from="1610757223862" duration="2802000" />
+      <workItem from="1611674452469" duration="644000" />
     </task>
     <task id="LOCAL-00001" summary="项目重构 1.0.0">
       <created>1572182652861</created>
@@ -497,16 +499,34 @@
       <option name="project" value="LOCAL" />
       <updated>1602415087971</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="出现同省地区匹配错误处理 update 1.2.8">
+      <created>1603947576247</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1603947576247</updated>
+    </task>
+    <task id="LOCAL-00048" summary="修复一个会导致地区截断错误的BUG update 1.2.9">
+      <created>1610758204358</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1610758204358</updated>
+    </task>
+    <task id="LOCAL-00049" summary="browser cache">
+      <created>1610758365510</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1610758365510</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修复可能导致错误解析的问题" />
-    <MESSAGE value="修复已知问题，通过全国地址地区顺序测试" />
-    <MESSAGE value="添加在线解析测试页" />
     <MESSAGE value="update" />
     <MESSAGE value="修复没有parseAll的问题" />
     <MESSAGE value="优化了name的识别逻辑，初始切分识别出的name权重高" />
@@ -529,41 +549,44 @@
     <MESSAGE value="update 1.2.6" />
     <MESSAGE value="修复神农架林区短名识别不准问题" />
     <MESSAGE value="update 1.2.7" />
-    <option name="LAST_COMMIT_MESSAGE" value="update 1.2.7" />
+    <MESSAGE value="出现同省地区匹配错误处理 update 1.2.8" />
+    <MESSAGE value="修复一个会导致地区截断错误的BUG update 1.2.9" />
+    <MESSAGE value="browser cache" />
+    <option name="LAST_COMMIT_MESSAGE" value="browser cache" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="917" y="157" key="CommitChangelistDialog2" timestamp="1603947550500">
+    <state x="917" y="157" key="CommitChangelistDialog2" timestamp="1610758364728">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="917" y="157" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1603947550500" />
-    <state x="184" y="86" key="DiffContextDialog" timestamp="1602051836416">
+    <state x="917" y="157" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1610758364728" />
+    <state x="184" y="86" key="DiffContextDialog" timestamp="1610758193944">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602051836416" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1601507449065">
+    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610758193944" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1610757309517">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601507449065" />
-    <state width="1877" height="317" key="GridCell.Tab.0.bottom" timestamp="1603942341395">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1610757309517" />
+    <state width="1877" height="317" key="GridCell.Tab.0.bottom" timestamp="1611675063169">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="317" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603942341395" />
-    <state width="1877" height="317" key="GridCell.Tab.0.center" timestamp="1603942341394">
+    <state width="1877" height="317" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1611675063169" />
+    <state width="1877" height="317" key="GridCell.Tab.0.center" timestamp="1611675063169">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="317" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603942341394" />
-    <state width="1877" height="317" key="GridCell.Tab.0.left" timestamp="1603942341394">
+    <state width="1877" height="317" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1611675063169" />
+    <state width="1877" height="317" key="GridCell.Tab.0.left" timestamp="1611675063169">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="317" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603942341394" />
-    <state width="1877" height="317" key="GridCell.Tab.0.right" timestamp="1603942341395">
+    <state width="1877" height="317" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1611675063169" />
+    <state width="1877" height="317" key="GridCell.Tab.0.right" timestamp="1611675063169">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="317" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603942341395" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602415092171">
+    <state width="1877" height="317" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1611675063169" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1610758369377">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602415092171" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610758369377" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/address_parse$index_html.dat" NAME="index.html Coverage Results" MODIFIED="1592493951824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

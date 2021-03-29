@@ -106,13 +106,20 @@ class ParseArea {
         if (result.__parse && result.province && _address.includes(result.province)) {
           _address = _address.replace(result.province, '');
           result.__parse += 1;
-          if (result.city && _address.includes(result.city)) {
-            if (result.city !== '县' || !_address.indexOf(result.city)) {
-              _address = _address.replace(result.city, '');
-            }
-            result.__parse += 1;
-            if (result.area && _address.includes(result.area)) {
+          if (result.city) {
+            if (_address.includes(result.city)) {
+              if (result.city !== '县' || !_address.indexOf(result.city)) {
+                _address = _address.replace(result.city, '');
+              }
               result.__parse += 1;
+              if (result.area && _address.includes(result.area)) {
+                result.__parse += 1;
+              }
+            } else if (address.includes(result.city)) {
+              result.__parse += 0.5;
+              if (result.area && _address.includes(result.area)) {
+                result.__parse += 1;
+              }
             }
           }
         }

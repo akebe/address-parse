@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="出现同省地区匹配错误处理 update 1.2.8">
+    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="优化手机号码正则 update 1.2.10">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/bundle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/parse/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/parse/parse-area.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/parse-area.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/js/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/js/bundle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parse/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parse/parse-area.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse/parse-area.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,8 +70,11 @@
       <recent name="D:\github\address-parse\docs\js" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build-web">
+  <component name="RunManager" selected="npm.build_test">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/address-parse/docs/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="test.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/test.js" working-dir="$PROJECT_DIR$/src">
       <method v="2" />
     </configuration>
     <configuration name="build-web" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -110,8 +109,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build-web" />
         <item itemvalue="npm.build_test" />
+        <item itemvalue="npm.build-web" />
+        <item itemvalue="Node.js.test.js" />
         <item itemvalue="npm.build" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
@@ -175,14 +175,8 @@
       <workItem from="1602414720862" duration="1043000" />
       <workItem from="1603940224304" duration="3451000" />
       <workItem from="1610757223862" duration="2802000" />
-      <workItem from="1611674452469" duration="644000" />
-    </task>
-    <task id="LOCAL-00001" summary="项目重构 1.0.0">
-      <created>1572182652861</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1572182652861</updated>
+      <workItem from="1611674452469" duration="1306000" />
+      <workItem from="1617024940571" duration="828000" />
     </task>
     <task id="LOCAL-00002" summary="添加测试地址">
       <created>1572183618243</created>
@@ -520,14 +514,20 @@
       <option name="project" value="LOCAL" />
       <updated>1610758365510</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="优化手机号码正则 update 1.2.10">
+      <created>1611675139175</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1611675139176</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update" />
     <MESSAGE value="修复没有parseAll的问题" />
     <MESSAGE value="优化了name的识别逻辑，初始切分识别出的name权重高" />
     <MESSAGE value="优化测试函数 支持字段测试" />
@@ -552,41 +552,42 @@
     <MESSAGE value="出现同省地区匹配错误处理 update 1.2.8" />
     <MESSAGE value="修复一个会导致地区截断错误的BUG update 1.2.9" />
     <MESSAGE value="browser cache" />
-    <option name="LAST_COMMIT_MESSAGE" value="browser cache" />
+    <MESSAGE value="优化手机号码正则 update 1.2.10" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化手机号码正则 update 1.2.10" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="917" y="157" key="CommitChangelistDialog2" timestamp="1610758364728">
+    <state x="917" y="157" key="CommitChangelistDialog2" timestamp="1617025827138">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="917" y="157" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1610758364728" />
-    <state x="184" y="86" key="DiffContextDialog" timestamp="1610758193944">
+    <state x="917" y="157" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1617025827138" />
+    <state x="184" y="86" key="DiffContextDialog" timestamp="1611675128409">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610758193944" />
+    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1611675128409" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1610757309517">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1610757309517" />
-    <state width="1877" height="317" key="GridCell.Tab.0.bottom" timestamp="1611675063169">
+    <state width="1877" height="317" key="GridCell.Tab.0.bottom" timestamp="1617025806283">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="317" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1611675063169" />
-    <state width="1877" height="317" key="GridCell.Tab.0.center" timestamp="1611675063169">
+    <state width="1877" height="317" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1617025806283" />
+    <state width="1877" height="317" key="GridCell.Tab.0.center" timestamp="1617025806283">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="317" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1611675063169" />
-    <state width="1877" height="317" key="GridCell.Tab.0.left" timestamp="1611675063169">
+    <state width="1877" height="317" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1617025806283" />
+    <state width="1877" height="317" key="GridCell.Tab.0.left" timestamp="1617025806283">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="317" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1611675063169" />
-    <state width="1877" height="317" key="GridCell.Tab.0.right" timestamp="1611675063169">
+    <state width="1877" height="317" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1617025806283" />
+    <state width="1877" height="317" key="GridCell.Tab.0.right" timestamp="1617025806283">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="317" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1611675063169" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1610758369377">
+    <state width="1877" height="317" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1617025806283" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1611675142250">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1610758369377" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1611675142250" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/address_parse$index_html.dat" NAME="index.html Coverage Results" MODIFIED="1592493951824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -142,6 +142,10 @@ var ParseArea = function () {
                     result.__parse += 1;
                   }
                 }
+
+                if (result.area && _address.includes(result.area)) {
+                  result.__parse += 1;
+                }
               }
             }
           }
@@ -163,7 +167,7 @@ var ParseArea = function () {
 
       // 可信度排序
       this.results.sort(function (a, b) {
-        return a.__parse && !b.__parse ? -1 : !a.__parse && b.__parse ? 1 : a.__parse && b.__parse && a.__parse > b.__parse ? -1 : a.__parse && b.__parse && a.__parse < b.__parse ? 1 : a.__parse && a.__type === 'parseByProvince' ? -1 : b.__parse && b.__type === 'parseByProvince' ? 1 : a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0;
+        return !a.__parse && !b.__parse && a.city && !b.city ? -1 : !a.__parse && !b.__parse && !a.city && b.city ? 1 : a.__parse && !b.__parse ? -1 : !a.__parse && b.__parse ? 1 : a.__parse && b.__parse && a.__parse > b.__parse ? -1 : a.__parse && b.__parse && a.__parse < b.__parse ? 1 : a.__parse && a.__type === 'parseByProvince' ? -1 : b.__parse && b.__type === 'parseByProvince' ? 1 : a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0;
       });
 
       return this.results;

@@ -50,6 +50,7 @@ class ParseAddress {
 
       for (let result of results) {
         Object.assign(result, this.result);
+        result.name = result.name.trim();
         ParseAddress.parseName(result, {firstName});
       }
       if (!results.length) {

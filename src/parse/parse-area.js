@@ -121,6 +121,10 @@ class ParseArea {
                 result.__parse += 1;
               }
             }
+
+            if (result.area && _address.includes(result.area)) {
+              result.__parse += 1;
+            }
           }
         }
       }
@@ -128,13 +132,15 @@ class ParseArea {
 
     // 可信度排序
     this.results.sort((a, b) =>
-      a.__parse && !b.__parse ? -1 :
-        !a.__parse && b.__parse ? 1 :
-          a.__parse && b.__parse && a.__parse > b.__parse ? -1 :
-            a.__parse && b.__parse && a.__parse < b.__parse ? 1 :
-              a.__parse && a.__type === 'parseByProvince' ? -1 :
-                b.__parse && b.__type === 'parseByProvince' ? 1 :
-                  a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0,
+      !a.__parse && !b.__parse && a.city && !b.city ? -1 :
+        !a.__parse && !b.__parse && !a.city && b.city ? 1 :
+          a.__parse && !b.__parse ? -1 :
+            !a.__parse && b.__parse ? 1 :
+              a.__parse && b.__parse && a.__parse > b.__parse ? -1 :
+                a.__parse && b.__parse && a.__parse < b.__parse ? 1 :
+                  a.__parse && a.__type === 'parseByProvince' ? -1 :
+                    b.__parse && b.__type === 'parseByProvince' ? 1 :
+                      a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0,
     );
 
     return this.results;

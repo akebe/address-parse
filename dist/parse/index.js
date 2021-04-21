@@ -77,6 +77,7 @@ var ParseAddress = function () {
             var _result = _step.value;
 
             Object.assign(_result, this.result);
+            _result.name = _result.name.trim();
             ParseAddress.parseName(_result, { firstName: firstName });
           }
         } catch (err) {

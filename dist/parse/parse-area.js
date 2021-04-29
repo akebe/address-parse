@@ -122,6 +122,7 @@ var ParseArea = function () {
           for (var _iterator = this.results[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
             var result = _step.value;
 
+            ParseArea.handlerDetail(result);
             var _address = address;
             result.__parse = +result.__parse;
             if (result.__parse && result.province && _address.includes(result.province)) {
@@ -795,6 +796,46 @@ var ParseArea = function () {
         results.unshift(_extends({}, result, { details: address.trim() }));
       }
       return results;
+    }
+
+    /**
+     * 清洗地址详情内的省市区
+     * @param result
+     */
+
+  }, {
+    key: 'handlerDetail',
+    value: function handlerDetail(result) {
+      if (result.details.length > 5) {
+        var ary = ['province', 'city', 'area'];
+        var _iteratorNormalCompletion10 = true;
+        var _didIteratorError10 = false;
+        var _iteratorError10 = undefined;
+
+        try {
+          for (var _iterator10 = ary[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+            var key = _step10.value;
+
+            if (!result[key]) break;
+            var index = result.details.indexOf(result[key]);
+            if (index !== 0) break;
+            result.details = result.details.substr(result[key].length);
+          }
+        } catch (err) {
+          _didIteratorError10 = true;
+          _iteratorError10 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion10 && _iterator10.return) {
+              _iterator10.return();
+            }
+          } finally {
+            if (_didIteratorError10) {
+              throw _iteratorError10;
+            }
+          }
+        }
+      }
     }
   }]);
 

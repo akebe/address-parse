@@ -101,6 +101,7 @@ class ParseArea {
     // __parse结果改为数值类型
     if (this.results.length > 1) {
       for (const result of this.results) {
+        ParseArea.handlerDetail(result);
         let _address = address;
         result.__parse = +result.__parse;
         if (result.__parse && result.province && _address.includes(result.province)) {
@@ -547,6 +548,22 @@ class ParseArea {
       results.unshift({...result, details: address.trim()});
     }
     return results;
+  }
+
+  /**
+   * 清洗地址详情内的省市区
+   * @param result
+   */
+  static handlerDetail(result) {
+    if (result.details.length > 5) {
+      const ary = ['province', 'city', 'area'];
+      for (const key of ary) {
+        if (!result[key]) break;
+        const index = result.details.indexOf(result[key]);
+        if (index !== 0) break;
+        result.details = result.details.substr(result[key].length);
+      }
+    }
   }
 }
 

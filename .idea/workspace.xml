@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="docs">
+    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="update 1.2.13 简单清洗details里面的省市区">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/parse/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/parse/parse-area.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parse/parse-area.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/js/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/js/bundle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parse/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parse/parse-area.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse/parse-area.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.js" afterDir="false" />
     </list>
@@ -64,18 +66,21 @@
     <property name="settings.editor.selected.configurable" value="sshConsole" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\github\address-parse\docs\js" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\github\address-parse\docs\js" />
       <recent name="D:\github\address-parse\dist" />
       <recent name="D:\github\address-parse\src" />
       <recent name="D:\github\address-parse" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\github\address-parse\docs\js" />
+    </key>
   </component>
   <component name="RunManager" selected="npm.build-web">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/address-parse/docs/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/parse/index.js" working-dir="$PROJECT_DIR$/src/parse">
       <method v="2" />
     </configuration>
     <configuration name="test.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/test.js" working-dir="$PROJECT_DIR$/src">
@@ -86,16 +91,6 @@
       <command value="run" />
       <scripts>
         <script value="build-web" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -115,9 +110,9 @@
       <list>
         <item itemvalue="npm.build-web" />
         <item itemvalue="npm.build_test" />
-        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="Node.js.test.js" />
-        <item itemvalue="npm.build" />
+        <item itemvalue="Node.js.index.js" />
+        <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
   </component>
@@ -183,14 +178,8 @@
       <workItem from="1617024940571" duration="3147000" />
       <workItem from="1619017431951" duration="2883000" />
       <workItem from="1619185094379" duration="2017000" />
-      <workItem from="1619712589175" duration="719000" />
-    </task>
-    <task id="LOCAL-00005" summary="规范数据对象命名">
-      <created>1572186439459</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1572186439459</updated>
+      <workItem from="1619712589175" duration="1472000" />
+      <workItem from="1619780543592" duration="4023000" />
     </task>
     <task id="LOCAL-00006" summary="更新文档使用说明">
       <created>1572187133194</created>
@@ -528,14 +517,20 @@
       <option name="project" value="LOCAL" />
       <updated>1619019712589</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="update 1.2.13 简单清洗details里面的省市区">
+      <created>1619713379169</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1619713379169</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update 1.1.4" />
     <MESSAGE value="地区数据更新" />
     <MESSAGE value="添加Utils.shortIndexOf改善地区短名截取效果" />
     <MESSAGE value="update 1.2.0" />
@@ -560,37 +555,38 @@
     <MESSAGE value="优化排序 update 1.2.11" />
     <MESSAGE value="优化解析精度 update 1.2.12" />
     <MESSAGE value="docs" />
-    <option name="LAST_COMMIT_MESSAGE" value="docs" />
+    <MESSAGE value="update 1.2.13 简单清洗details里面的省市区" />
+    <option name="LAST_COMMIT_MESSAGE" value="update 1.2.13 简单清洗details里面的省市区" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="917" y="157" width="730" height="810" key="CommitChangelistDialog2" timestamp="1619019712100">
+    <state x="917" y="157" width="730" height="810" key="CommitChangelistDialog2" timestamp="1619713378223">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="917" y="157" width="730" height="810" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1619019712100" />
+    <state x="917" y="157" width="730" height="810" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1619713378223" />
     <state x="184" y="86" key="DiffContextDialog" timestamp="1619019688422">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1619019688422" />
-    <state width="1877" height="395" key="GridCell.Tab.0.bottom" timestamp="1619713315960">
+    <state width="1877" height="275" key="GridCell.Tab.0.bottom" timestamp="1619796749383">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="395" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1619713315960" />
-    <state width="1877" height="395" key="GridCell.Tab.0.center" timestamp="1619713315960">
+    <state width="1877" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1619796749383" />
+    <state width="1877" height="275" key="GridCell.Tab.0.center" timestamp="1619796749383">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="395" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1619713315960" />
-    <state width="1877" height="395" key="GridCell.Tab.0.left" timestamp="1619713315960">
+    <state width="1877" height="275" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1619796749383" />
+    <state width="1877" height="275" key="GridCell.Tab.0.left" timestamp="1619796749383">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="395" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1619713315960" />
-    <state width="1877" height="395" key="GridCell.Tab.0.right" timestamp="1619713315960">
+    <state width="1877" height="275" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1619796749383" />
+    <state width="1877" height="275" key="GridCell.Tab.0.right" timestamp="1619796749383">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="395" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1619713315960" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1619019716816">
+    <state width="1877" height="275" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1619796749383" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1619713382985">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1619019716816" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1619713382985" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/address_parse$index_html.dat" NAME="index.html Coverage Results" MODIFIED="1592493951824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -52,6 +52,7 @@ class ParseAddress {
         Object.assign(result, this.result);
         result.name = result.name.trim();
         ParseAddress.parseName(result, {firstName});
+        ParseAddress.handlerDetail(result);
       }
       if (!results.length) {
         let result = Object.assign(this.result, {
@@ -135,7 +136,7 @@ class ParseAddress {
       if (list.length > 1) {
         let index = 0;
         for (const v of list) {
-          if (v || Utils.strLen(name.value) > Utils.strLen(v) || firstName && v === firstName) {
+          if (v && !name.value || v && Utils.strLen(name.value) > Utils.strLen(v) || firstName && v === firstName) {
             name.value = v;
             name.index = index;
             if (firstName && v === firstName) break;
@@ -146,11 +147,27 @@ class ParseAddress {
       if (name.value) {
         result.name = name.value;
         list.splice(name.index, 1);
-        result.details = list.join(' ');
+        result.details = list.join(' ').trim();
       }
     }
     return result.name;
   }
+
+  /**
+   * 清洗地址详情内的省市区
+   * @param result
+   */
+  static handlerDetail(result) {
+    if (result.details.length > 5) {
+      const ary = ['province', 'city', 'area'];
+      for (const key of ary) {
+        const index = result.details.indexOf(result[key]);
+        if (index !== 0) continue;
+        result.details = result.details.substr(result[key].length);
+      }
+    }
+  }
+
 }
 
 export {

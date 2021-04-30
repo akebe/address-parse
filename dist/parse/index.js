@@ -79,6 +79,7 @@ var ParseAddress = function () {
             Object.assign(_result, this.result);
             _result.name = _result.name.trim();
             ParseAddress.parseName(_result, { firstName: firstName });
+            ParseAddress.handlerDetail(_result);
           }
         } catch (err) {
           _didIteratorError = true;
@@ -225,7 +226,7 @@ var ParseAddress = function () {
             for (var _iterator3 = list[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
               var v = _step3.value;
 
-              if (v || _utils2.default.strLen(name.value) > _utils2.default.strLen(v) || firstName && v === firstName) {
+              if (v && !name.value || v && _utils2.default.strLen(name.value) > _utils2.default.strLen(v) || firstName && v === firstName) {
                 name.value = v;
                 name.index = index;
                 if (firstName && v === firstName) break;
@@ -250,10 +251,49 @@ var ParseAddress = function () {
         if (name.value) {
           result.name = name.value;
           list.splice(name.index, 1);
-          result.details = list.join(' ');
+          result.details = list.join(' ').trim();
         }
       }
       return result.name;
+    }
+
+    /**
+     * 清洗地址详情内的省市区
+     * @param result
+     */
+
+  }, {
+    key: 'handlerDetail',
+    value: function handlerDetail(result) {
+      if (result.details.length > 5) {
+        var ary = ['province', 'city', 'area'];
+        var _iteratorNormalCompletion4 = true;
+        var _didIteratorError4 = false;
+        var _iteratorError4 = undefined;
+
+        try {
+          for (var _iterator4 = ary[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            var key = _step4.value;
+
+            var index = result.details.indexOf(result[key]);
+            if (index !== 0) continue;
+            result.details = result.details.substr(result[key].length);
+          }
+        } catch (err) {
+          _didIteratorError4 = true;
+          _iteratorError4 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion4 && _iterator4.return) {
+              _iterator4.return();
+            }
+          } finally {
+            if (_didIteratorError4) {
+              throw _iteratorError4;
+            }
+          }
+        }
+      }
     }
   }]);
 

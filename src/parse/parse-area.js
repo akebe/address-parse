@@ -7,17 +7,17 @@ import AREA from '../area';
 import Utils from './utils';
 
 const ProvinceKeys = [
-  '特别行政区', '古自治区', '维吾尔自治区', '壮族自治区', '回族自治区', '自治区', '省省直辖', '省', '市',
+  '特别行政区', '古自治区', '维吾尔自治区', '壮族自治区', '回族自治区', '自治区', '省省直辖', '省', '市'
 ];
 
 const CityKeys = [
   '布依族苗族自治州', '苗族侗族自治州', '藏族羌族自治州', '哈尼族彝族自治州', '壮族苗族自治州', '傣族景颇族自治州', '蒙古族藏族自治州',
-  '傣族自治州', '白族自治州', '藏族自治州', '彝族自治州', '回族自治州', '蒙古自治州', '朝鲜族自治州', '地区', '哈萨克自治州', '盟', '市',
+  '傣族自治州', '白族自治州', '藏族自治州', '彝族自治州', '回族自治州', '蒙古自治州', '朝鲜族自治州', '地区', '哈萨克自治州', '盟', '市'
 ];
 
 const AreaKeys = [
   '满族自治县', '满族蒙古族自治县', '蒙古族自治县', '朝鲜族自治县',
-  '回族彝族自治县', '彝族回族苗族自治县', '彝族苗族自治县', '土家族苗族自治县', '布依族苗族自治县', '苗族布依族自治县',
+  '回族彝族自治县', '彝族回族苗族自治县', '彝族苗族自治县', '土家族苗族自治县', '布依族苗族自治县', '苗族布依族自治县', '苗族土家族自治县',
   '彝族傣族自治县', '傣族彝族自治县', '仡佬族苗族自治县', '黎族苗族自治县', '苗族侗族自治县', '哈尼族彝族傣族自治县', '哈尼族彝族自治县',
   '彝族哈尼族拉祜族自治县', '傣族拉祜族佤族自治县', '傣族佤族自治县', '拉祜族佤族布朗族傣族自治县', '苗族瑶族傣族自治县', '彝族回族自治县',
   '独龙族怒族自治县', '保安族东乡族撒拉族自治县', '回族土族自治县', '撒拉族自治县', '哈萨克自治县', '塔吉克自治县',
@@ -27,7 +27,7 @@ const AreaKeys = [
   '达斡尔族区', '达斡尔族自治旗',
   '左旗', '右旗', '中旗', '后旗', '联合旗', '自治旗', '旗', '自治县',
   '街道办事处',
-  '新区', '区', '县', '市',
+  '新区', '区', '县', '市'
 ];
 
 class ParseArea {
@@ -125,6 +125,8 @@ class ParseArea {
 
             if (result.area && _address.includes(result.area)) {
               result.__parse += 1;
+            } else if (result.area && _address.includes(result.area.substr(0, 2))) {
+              result.__parse += 0.5;
             }
           }
         }
@@ -141,7 +143,7 @@ class ParseArea {
                 a.__parse && b.__parse && a.__parse < b.__parse ? 1 :
                   a.__parse && a.__type === 'parseByProvince' ? -1 :
                     b.__parse && b.__type === 'parseByProvince' ? 1 :
-                      a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0,
+                      a.name.length > b.name.length ? 1 : a.name.length < b.name.length ? -1 : 0
     );
 
     return this.results;
@@ -161,7 +163,7 @@ class ParseArea {
       name: '',
       code: '',
       __type: 'parseByProvince',
-      __parse: false,
+      __parse: false
     };
     let address = addressBase;
     for (const code in province_list) {
@@ -240,7 +242,7 @@ class ParseArea {
       code: '',
       index: -1,
       address: '',
-      isShort: false,
+      isShort: false
     };
     for (const city of cityList) {
       let index = address.indexOf(city.name);
@@ -305,7 +307,7 @@ class ParseArea {
       code: '',
       index: -1,
       address: '',
-      isShort: false,
+      isShort: false
     };
     for (const area of areaList) {
       let index = address.indexOf(area.name);
@@ -391,7 +393,7 @@ class ParseArea {
       name: '',
       code: '',
       __type: 'parseByCity',
-      __parse: false,
+      __parse: false
     };
     let address = addressBase;
     for (const code in city_list) {
@@ -464,7 +466,7 @@ class ParseArea {
       name: '',
       code: '',
       __type: 'parseByArea',
-      __parse: false,
+      __parse: false
     };
     let address = addressBase;
     for (const code in area_list) {
@@ -527,8 +529,9 @@ class ParseArea {
             break;
           }
         }
-
+        if (shortArea && address.charAt(index + areaLength) === '县') index += 1;
         address = address.substr(index + areaLength);
+
         if (_provinceName || _cityName) {
           result.__parse = true;
           break;

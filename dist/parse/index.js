@@ -210,7 +210,7 @@ var ParseAddress = function () {
           maxLen = _ref$maxLen === undefined ? 11 : _ref$maxLen,
           firstName = _ref.firstName;
 
-      if (!result.name) {
+      if (!result.name || _utils2.default.strLen(result.name) > 15) {
         var list = result.details.split(' ');
         var name = {
           value: '',

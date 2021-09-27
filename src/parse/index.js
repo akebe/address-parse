@@ -14,7 +14,7 @@ class ParseAddress {
   static ParseArea = new ParseArea();
 
   static Reg = {
-    ...Utils.Reg,
+    ...Utils.Reg
   };
 
   constructor(address) {
@@ -35,7 +35,7 @@ class ParseAddress {
       this.result = {
         mobile: '',
         zip_code: '',
-        phone: '',
+        phone: ''
       };
 
       this.address = address;
@@ -62,7 +62,7 @@ class ParseAddress {
           details: this.address,
           name: '',
           code: '',
-          __type: '',
+          __type: ''
         });
         ParseAddress.parseName(result);
         results.push(result);
@@ -127,11 +127,11 @@ class ParseAddress {
    * @param firstName 最初切分地址识别到的name
    */
   static parseName(result, {maxLen = 11, firstName} = {}) {
-    if (!result.name) {
+    if (!result.name || Utils.strLen(result.name) > 15) {
       const list = result.details.split(' ');
       const name = {
         value: '',
-        index: -1,
+        index: -1
       };
       if (list.length > 1) {
         let index = 0;
@@ -173,7 +173,7 @@ class ParseAddress {
 export {
   ParseAddress,
   AREA,
-  Utils,
+  Utils
 };
 
 export default new ParseAddress();

@@ -37,7 +37,7 @@ function addressParseTest(list = []) {
 }
 
 /**
- * 把所有省市区组为测试数组
+ * 把所有省市区组为测试数组123
  */
 function getAllAreaTestList() {
   const cityTestList = [];

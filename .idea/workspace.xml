@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="update 1.2.14 优化识别结果">
+    <list default="true" id="5511bc8b-562b-4582-8c27-5a3123a10d38" name="Default" comment="update 1.2.15 优化识别结果">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mca.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/area.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/area.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/bundle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/js/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/js/bundle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -16,15 +20,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings">
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -39,30 +41,35 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="PhpServers">
-    <servers />
-  </component>
   <component name="ProjectId" id="1V3MUuzAjU7KAGgIKeDZGmhtBXL" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/js" />
-    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="sshConsole" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\github\address-parse\docs\js" />
       <recent name="D:\github\address-parse\docs\js" />
       <recent name="D:\github\address-parse\dist" />
       <recent name="D:\github\address-parse\src" />
@@ -72,11 +79,8 @@
       <recent name="D:\github\address-parse\docs\js" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build-web">
-    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/address-parse/docs/index.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="index.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/parse/index.js" working-dir="$PROJECT_DIR$/src/parse">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:3031/address-parse/docs/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="test.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/test.js" working-dir="$PROJECT_DIR$/src">
@@ -102,28 +106,27 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="npm.build-web" />
         <item itemvalue="npm.build_test" />
+        <item itemvalue="npm.test" />
         <item itemvalue="Node.js.test.js" />
-        <item itemvalue="Node.js.index.js" />
-        <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SshConsoleOptionsProvider">
     <option name="myEncoding" value="GBK" />
     <option name="myConnectionType" value="CURRENT_VAGRANT" />
@@ -178,34 +181,10 @@
       <workItem from="1619780543592" duration="5341000" />
       <workItem from="1621433761149" duration="624000" />
       <workItem from="1622650539520" duration="541000" />
-    </task>
-    <task id="LOCAL-00007" summary="添加repository homepage">
-      <created>1572187566334</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1572187566334</updated>
-    </task>
-    <task id="LOCAL-00008" summary="license">
-      <created>1572188350690</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1572188350690</updated>
-    </task>
-    <task id="LOCAL-00009" summary="issues">
-      <created>1572189363416</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1572189363416</updated>
-    </task>
-    <task id="LOCAL-00010" summary="包内添加npm依赖">
-      <created>1572189407725</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1572189407725</updated>
+      <workItem from="1631063206159" duration="2081000" />
+      <workItem from="1632532454800" duration="2811000" />
+      <workItem from="1632722188056" duration="1550000" />
+      <workItem from="1640844054397" duration="1979000" />
     </task>
     <task id="LOCAL-00011" summary="修复正则表达式lastIndex问题 1.0.3">
       <created>1572191363707</created>
@@ -522,17 +501,41 @@
       <option name="project" value="LOCAL" />
       <updated>1619796892811</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="update 1.2.16 修复达斡尔族地区识别不正确问题">
+      <created>1631063446346</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1631063446346</updated>
+    </task>
+    <task id="LOCAL-00057" summary="update 1.2.16 修复">
+      <created>1631063506015</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1631063506015</updated>
+    </task>
+    <task id="LOCAL-00058" summary="update 1.2.17 优化排序算法，增加识别精度">
+      <created>1632534604810</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1632534604810</updated>
+    </task>
+    <task id="LOCAL-00059" summary="update 1.2.18 优化name的识别结果">
+      <created>1632722891774</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1632722891774</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加Utils.shortIndexOf改善地区短名截取效果" />
-    <MESSAGE value="update 1.2.0" />
-    <MESSAGE value="支持url参数解析，支持parseAll设置" />
-    <MESSAGE value="__parse结果改为数值类型，据此优化可信度排序" />
     <MESSAGE value="update 1.2.1" />
     <MESSAGE value="bundle增加环境判断" />
     <MESSAGE value="优化涉“新区”的地址识别" />
@@ -554,37 +557,11 @@
     <MESSAGE value="docs" />
     <MESSAGE value="update 1.2.13 简单清洗details里面的省市区" />
     <MESSAGE value="update 1.2.14 优化识别结果" />
-    <option name="LAST_COMMIT_MESSAGE" value="update 1.2.14 优化识别结果" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="917" y="157" width="730" height="810" key="CommitChangelistDialog2" timestamp="1619796891906">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="917" y="157" width="730" height="810" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1619796891906" />
-    <state x="184" y="86" key="DiffContextDialog" timestamp="1619019688422">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1619019688422" />
-    <state width="1877" height="275" key="GridCell.Tab.0.bottom" timestamp="1622651045732">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1622651045732" />
-    <state width="1877" height="275" key="GridCell.Tab.0.center" timestamp="1622651045732">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="275" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1622651045732" />
-    <state width="1877" height="275" key="GridCell.Tab.0.left" timestamp="1622651045732">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="275" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1622651045732" />
-    <state width="1877" height="275" key="GridCell.Tab.0.right" timestamp="1622651045732">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="275" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1622651045732" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1619796915741">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1619796915741" />
+    <MESSAGE value="update 1.2.16 修复达斡尔族地区识别不正确问题" />
+    <MESSAGE value="update 1.2.16 修复" />
+    <MESSAGE value="update 1.2.17 优化排序算法，增加识别精度" />
+    <MESSAGE value="update 1.2.18 优化name的识别结果" />
+    <option name="LAST_COMMIT_MESSAGE" value="update 1.2.18 优化name的识别结果" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/address_parse$index_html.dat" NAME="index.html Coverage Results" MODIFIED="1592493951824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
